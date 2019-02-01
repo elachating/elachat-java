@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eladapp.elachat"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name="com.eladapp.elachat.application.CloudchatApp"
+        tools:replace="android:icon">
+        <activity android:name=".ElachatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.ChatActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.AddFriendsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.WalletcreateonestepActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.WalletcreatetowstepActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.FriendlistActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.MyInfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.NewFriendsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.SetmyinfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.UserInfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.ImgActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.AudioRecorderActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.VideoRecorderActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.PlayvideoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetmenurActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetdetailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetpayActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetsendActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetsendconfirmActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AssetchatsendconfirmActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AppsettingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AssetsettingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AsseteditpaypwdActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.did.DidmanageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.MessagesettingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.LicenseagreementActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.did.DidAuthorActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="elachatapp"
+                    android:host="identity">
+                </data>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AssetoutputprvstoreActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AssetoutputmnemonicActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.chat.ChatmenurActivity"  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+</manifest>

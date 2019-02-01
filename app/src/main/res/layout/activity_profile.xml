@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/aa"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_height="260dp">
+        <ImageView
+            android:id="@+id/addwalletimg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/addwallet" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="280dp"
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/btn_addwallet"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:background="#0070C9"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:text="创建钱包"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="340dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/btn_import_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:background="@drawable/import_wallet_shape_button"
+            android:text="导入钱包"
+            android:textColor="#333"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

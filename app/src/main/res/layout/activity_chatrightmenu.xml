@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#80000000">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="2dp">
+
+        <LinearLayout
+            android:id="@+id/add_friend_layout"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#fff">
+            <ImageView
+                android:id="@+id/id_imageView1"
+                android:layout_width="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/add_friend_gray" />
+            <TextView
+                android:id="@+id/add_friend"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:text="加好友"
+                android:textColor="#777"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="98dp"
+        android:layout_marginRight="2dp">
+        <LinearLayout
+            android:id="@+id/add_group_layout"
+            android:layout_width="150dp"
+            android:layout_height="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#fff">
+            <View android:layout_height="2px" android:background="#f5f5f5" android:layout_width="140dp" android:layout_marginLeft="5dp"></View>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="2dp">
+
+        <LinearLayout
+            android:id="@+id/id_pop_dialog_layouta"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#fff">
+            <ImageView
+                android:id="@+id/id_imageView2"
+                android:layout_width="35dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/add_group_gray" />
+            <TextView
+                android:id="@+id/add_group"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:text="加群组"
+                android:textColor="#777"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

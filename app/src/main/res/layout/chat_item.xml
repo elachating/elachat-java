@@ -1,0 +1,281 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dip"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--用来显示接受到的信息-->
+    <LinearLayout
+        android:id="@+id/rev_layout"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingRight="20dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/chatdefaultlogo"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+        <TextView
+            android:id="@+id/rev_tv"
+            android:background="@drawable/message_left"
+            android:paddingTop="15dip"
+            android:maxWidth="400dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--用来显示发送出去信息-->
+    <LinearLayout
+        android:id="@+id/send_layout"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dip"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/send_tv"
+            android:background="@drawable/message_right"
+            android:layout_width="wrap_content"
+            android:maxWidth="400dip"
+            android:paddingTop="15dip"
+            android:paddingLeft="50dip"
+            android:textAlignment="viewStart"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/chatdefaultlogor"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+    </LinearLayout>
+
+    <!--用来显示接受到的信息-->
+    <LinearLayout
+        android:id="@+id/rev_img_layout"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingRight="20dip"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/chatdefaultlogs"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+        <ImageView
+            android:id="@+id/chat_img_left"
+            android:layout_width="150dip"
+            android:layout_height="150dip"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bottom_chat_img" />
+    </LinearLayout>
+
+    <!--用来显示发送出去信息-->
+    <LinearLayout
+        android:id="@+id/send_img_layout"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_marginLeft="20dip"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/chat_img_right"
+            android:layout_width="150dip"
+            android:layout_height="150dip"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bottom_chat_img" />
+        <ImageView
+            android:id="@+id/chatdefaultlogors"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+    </LinearLayout>
+
+
+
+    <!--用来显示接受到的信息-->
+    <LinearLayout
+        android:id="@+id/rev_video_layout"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingRight="20dip"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/chatdefaultlogsa"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+        <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp">
+        <ImageView
+            android:id="@+id/chat_video_left"
+            android:layout_width="150dip"
+            android:layout_height="150dip"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true" />
+            <ImageButton
+                android:id="@+id/chat_video_left_play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:alpha="0.3"
+                android:background="@drawable/play"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="50dp" />
+            <Button
+                android:id="@+id/chat_video_left_play_time"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:textSize="12dp"
+                android:alpha="0.5"
+                android:background="#FFF"
+                android:textColor="#999"
+                android:gravity="center_vertical|right"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="130dp" />
+    </FrameLayout>
+
+    </LinearLayout>
+
+    <!--用来显示发送出去信息-->
+    <LinearLayout
+        android:id="@+id/send_video_layout"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_marginLeft="20dip"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+            <ImageView
+                android:id="@+id/chat_video_right"
+                android:layout_width="150dip"
+                android:layout_height="150dip"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true" />
+            <ImageButton
+                android:id="@+id/chat_video_right_play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:alpha="0.3"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/play" />
+            <Button
+                android:id="@+id/chat_video_right_play_time"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:textSize="12dp"
+                android:alpha="0.3"
+                android:background="#FFF"
+                android:textColor="#999"
+                android:gravity="center_vertical|right"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="130dp" />
+        </FrameLayout>
+        <ImageView
+            android:id="@+id/chatdefaultlogorsb"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+    </LinearLayout>
+
+
+    <!--用来显示接受到的音频信息-->
+    <LinearLayout
+        android:id="@+id/rev_audio_layout"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingRight="20dip"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/chatdefaultlogsaw"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+        <FrameLayout
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:background="#e5e5e5">
+            <TextView
+                android:id="@+id/chat_audio_left_time"
+                android:layout_width="40dip"
+                android:layout_height="35dip"
+                android:text="0''"
+                android:gravity="left|center_vertical"
+                android:layout_marginLeft="40dp"
+                android:textSize="12dp"
+                android:adjustViewBounds="true" />
+            <ImageButton
+                android:id="@+id/chat_audio_left_play"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/chat_voice_left_three" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!--用来显示发送出去语音信息-->
+    <LinearLayout
+        android:id="@+id/send_audio_layout"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_marginLeft="20dip"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:background="#5ec55b">
+            <TextView
+                android:id="@+id/chat_audio_right_time"
+                android:layout_width="35dip"
+                android:layout_height="35dip"
+                android:layout_marginLeft="10dp"
+                android:text="0''"
+                android:textSize="12dp"
+                android:gravity="right|center_vertical" />
+            <ImageButton
+                android:id="@+id/chat_audio_right_play"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/chat_voice_right_three" />
+        </FrameLayout>
+        <ImageView
+            android:id="@+id/chatdefaultlogorsba"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/eladefalut" />
+    </LinearLayout>
+</LinearLayout>

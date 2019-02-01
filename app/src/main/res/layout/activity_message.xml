@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentmessagexmla"
+    android:background="#e6e6e6"
+    android:textAlignment="center"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/fragmentmessagexml"
+android:background="#e6e6e6"
+android:textAlignment="center"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent">
+    <ListView
+        android:id="@+id/lv"
+        android:layout_marginTop="41dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:background="#0070C9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="消息"
+            android:textColor="#FEFEFE"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/friendlist"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/message_friend_white" />
+        <ImageView
+            android:id="@+id/menupopdialog"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/add_white" />
+    </RelativeLayout>
+</RelativeLayout>

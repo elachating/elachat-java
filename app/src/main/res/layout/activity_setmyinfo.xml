@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setmyinfolay"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    >
+    <RelativeLayout
+        android:id="@+id/setmyinfotitle"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:background="#0070C9">
+
+        <ImageView
+            android:id="@+id/searchFriend"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY"
+            android:onClick="back"
+            android:src="@drawable/left_arrow_white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="更改昵称"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_save_myinfo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:background="#0070C9"
+            android:text="保存"
+            android:textColor="#fff"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="15dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="270sp"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_height="60dp">
+            <EditText
+                android:id="@+id/edt_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="6dp"
+                android:textColor="#222"
+                android:layout_centerVertical="true"
+                android:gravity="bottom"
+                android:hint = "你的昵称"
+                android:textColorHint="#333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="12sp"
+                android:background="@drawable/add_friend_bottom_border"
+                android:text="" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
