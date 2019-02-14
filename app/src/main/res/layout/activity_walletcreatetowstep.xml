@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="支付密码"
+            android:text="@string/createwallettow"
             android:textColor="#333333"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -32,7 +32,7 @@
             android:id="@+id/paypwd"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:hint="支付密码(至少8个字母与数字结合的字符)"
+            android:hint="@string/createwallettow_text_tip_one"
             android:inputType="textPassword"
             android:textColor="#333333"
             android:textSize="12dp"
@@ -48,7 +48,7 @@
             android:id="@+id/cpaypwd"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:hint="确认支付密码(至少8个字母与数字结合的字符)"
+            android:hint="@string/createwallettow_text_tip_tow"
             android:inputType="textPassword"
             android:textColor="#333333"
             android:textSize="12dp"
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
-            android:text="确定"
+            android:text="@string/createwallettow_confirm_button"
             android:textColor="#fff"
             android:textSize="18sp" />
     </LinearLayout>

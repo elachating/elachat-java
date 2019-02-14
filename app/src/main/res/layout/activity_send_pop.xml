@@ -25,7 +25,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_centerInParent="true"
                 android:textColorHint="#444444"
-                android:hint="支付密码"
+                android:hint="@string/assetsendconfirm"
                 android:textColor="#777"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -42,7 +42,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="20dp"
-                android:text="确定"
+                android:text="@string/assetsendconfirm_confirm_button"
                 android:textColor="#ffffff"
                 android:background="#0070C9"/>
         </LinearLayout>

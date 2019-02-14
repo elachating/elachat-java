@@ -35,7 +35,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:layout_centerInParent="true"
-                android:text="新增资产"
+                android:text="@string/addasset_menu_one"
                 android:textColor="#777"
                 android:textSize="18sp" />
         </LinearLayout>

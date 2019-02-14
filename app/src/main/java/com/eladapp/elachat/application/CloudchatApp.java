@@ -19,6 +19,8 @@ import org.elastos.carrier.session.Stream;
 import org.elastos.carrier.session.StreamState;
 import org.elastos.carrier.session.StreamType;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -34,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import android.widget.ImageView;
 import com.eladapp.elachat.db.Db;
@@ -84,6 +87,7 @@ public class CloudchatApp extends Application{
     private IDidManager DIDManager;
     private String rootPaths;
     private  IDid did;
+    private Configuration config;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -120,6 +124,17 @@ public class CloudchatApp extends Application{
             e.printStackTrace();
         }
     }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        config = resources.getConfiguration();
+        if(config.locale.equals(Locale.CHINA)){
+            lang = "cn";
+        }else if(config.equals(Locale.ENGLISH)){
+            lang =  "en";
+        }
+        return lang;
+    }
     public void initwallet(String rootPath){
         //mDIDManagerSupervisor = new DIDManagerSupervisor(rootPath);
         mWalletManager = new MasterWalletManager(rootPath);
@@ -127,6 +142,7 @@ public class CloudchatApp extends Application{
         if(mMasterWalletList!=null && !mMasterWalletList.toString().equals("[]")){
             mCurrentMasterWallet = mMasterWalletList.get(0);
             if (mCurrentMasterWallet != null) {
+
             }
         } else {
             mMasterWalletList = new ArrayList<IMasterWallet>();

@@ -1,0 +1,137 @@
+<resources>
+    <!-- 底部菜单 -->
+    <string name="app_name">ElaChat</string>
+    <string name="assets">资产</string>
+    <string name="dapps">应用</string>
+    <string name="message">消息</string>
+    <string name="profile">我</string>
+    <!-- 加好友页面 -->
+    <string name="addfriend">加好友</string>
+    <string name="addfriend_user_address">用户地址</string>
+    <string name="addfriend_bak_info">备注信息</string>
+    <string name="addfriend_add_button">添加好友</string>
+    <!-- 应用设置页面 -->
+    <string name="appsetting">应用设置</string>
+    <string name="appsetting_change_lang_tip">选择语言</string>
+    <!--  资产详细页面  -->
+    <string name="assetdetail">资产</string>
+    <string name="assetdetail_pay">转账</string>
+    <string name="assetdetail_gather">收款</string>
+    <!--  收款二维码页面  -->
+    <string name="assetreceive">接收</string>
+    <!--  发送资产页面  -->
+    <string name="assetsend_info">转账</string>
+    <string name="assetsend_gather_address">收款地址</string>
+    <string name="assetsend_pay_amount">付款金额</string>
+    <string name="assetsend_remark_info">备注信息</string>
+    <string name="assetsend_send_button">转账</string>
+    <!--  新增资产菜单页面  -->
+    <string name="addasset_menu_one">新增资产</string>
+    <!--  资产设置页面  -->
+    <string name="assetsetting">资产设置</string>
+    <string name="assetsetting_update_pay_password">修改支付密码</string>
+    <string name="assetsetting_export_mnemonic">导出助记词</string>
+    <string name="assetsetting_export_private_key">导出私钥</string>
+    <!--  录音页面  -->
+    <string name="audio_info">按下说话</string>
+    <!--  授权管理页面  -->
+    <string name="authormanage">授权管理</string>
+    <string name="authormanage_mid_info">权限:Carrier昵称、Useraddress、资产收币地址</string>
+    <string name="authormanage_refuse_button">拒绝</string>
+    <string name="authormanage_author_button">授权</string>
+    <!-- 创建资产助记词页面  -->
+    <string name="createwalletone">助记词</string>
+    <string name="createwalletone_info_tip">请依次记录到纸上，该助记词是回复当前资产的唯一凭据，请妥善保存并以防他人偷窥。丢失后，无法恢复，本应用不存储任何资产信息。</string>
+    <string name="createwalletone_priv_button">上一个</string>
+    <string name="createwalletone_next_button">下一个</string>
+    <string name="createwalletone_confrim_button">我已记下</string>
+    <!-- 创建资产设置支付密码   -->
+    <string name="createwallettow">支付密码</string>
+    <string name="createwallettow_text_tip_one">支付密码(至少8个字母与数字结合的字符)</string>
+    <string name="createwallettow_text_tip_tow">确认支付密码(至少8个字母与数字结合的字符)</string>
+    <string name="createwallettow_confirm_button">确定</string>
+    <!-- 资产总界面   -->
+    <string name="mainassets">资产</string>
+    <!-- 好友界面   -->
+    <string name="frienduserinfo">好友资料</string>
+    <string name="frienduserinfo_email">电子邮箱</string>
+    <string name="frienduserinfo_phone">联系电话</string>
+    <string name="frienduserinfo_send_message">发送消息</string>
+    <!-- 设置我的昵称   -->
+    <string name="setmyinfo">更改昵称</string>
+    <string name="setmyinfo_save">保存</string>
+    <string name="setmyinfo_my_nick">我的昵称</string>
+    <!-- 转账确认   -->
+    <string name="assetsendconfirm">支付密码</string>
+    <string name="assetsendconfirm_confirm_button">确认</string>
+    <!-- 导出助记词页面   -->
+    <string name="exportmnemonic">导出助记词</string>
+    <string name="exportmnemonic_pay_pwd">资产支付密码</string>
+    <string name="exportmnemonic_export">导出</string>
+    <!-- 导出Keystore文件   -->
+    <string name="exportkeystore">导出Keystore文件</string>
+    <string name="exportkeystore_set_keystore_pwd">设置导出Keystore密码</string>
+    <string name="exportkeystore_set_keystore_pwd_re">重复设置导出Keystore密码</string>
+    <string name="exportkeystore_pay_pwd">导出Keystore文件</string>
+    <string name="exportkeystore_confrim_button">导出</string>
+    <!-- 新好友列表   -->
+    <string name="newfriendlist">新朋友</string>
+    <!-- 我的界面   -->
+    <string name="my">我</string>
+    <string name="my_assets_set">资产设置</string>
+    <string name="my_did_set">DID管理</string>
+    <string name="my_message_set">消息设置</string>
+    <string name="my_app_set">应用设置</string>
+    <string name="my_author_set">许可协议</string>
+    <string name="my_support">支持我们</string>
+    <string name="my_help_center">帮助中心</string>
+    <string name="my_version_update">版本更新</string>
+    <!-- 消息设置   -->
+    <string name="messageset_info">消息设置</string>
+    <string name="messageset_info_tip">换设备,维持好友关系</string>
+    <!-- 消息界面   -->
+    <string name="messagelist">消息</string>
+    <!-- 许可协议   -->
+    <string name="authorinfo">许可协议</string>
+    <!-- 朋友列表   -->
+    <string name="friendlist">联系人</string>
+    <string name="friendlist_me">我</string>
+    <string name="friendlist_new_friend">新朋友</string>
+    <!-- 修改支付密码   -->
+    <string name="updatepaypwd">修改支付密码</string>
+    <string name="updatepaypwd_old_pay_pwd">原支付密码</string>
+    <string name="updatepaypwd_pay_pwd">新支付密码</string>
+    <string name="updatepaypwd_re_pay_pwd">再次输入新支付密码</string>
+    <string name="updatepaypwd_confirm_button">确定</string>
+    <!-- 我的资料   -->
+    <string name="myinfo">我的信息</string>
+    <string name="myinfo_nickname">我的昵称</string>
+    <!-- DID管理   -->
+    <string name="didmanage">DID管理</string>
+    <string name="didmanage_nickname">昵称:</string>
+    <string name="didmanage_carrier_address">账号地址:</string>
+    <string name="didmanage_wallet_address">钱包地址:</string>
+    <!-- 加好友与群组菜单   -->
+    <string name="joinfriendgroup_friend">加好友</string>
+    <string name="joinfriendgroup_group">加群组</string>
+    <!-- 聊天界面转账   -->
+    <string name="chat_tranfer_amount">金额</string>
+    <string name="chat_tranfer_remark">备注</string>
+    <string name="chat_tranfer_pay_pwd">支付密码</string>
+    <string name="chat_tranfer_confirm_button">确定</string>
+    <!-- 聊天界面   -->
+    <string name="chat_info">聊天</string>
+    <string name="chat_info_menu_press_speak">按下说话</string>
+    <string name="chat_info_send_message">发送</string>
+    <string name="chat_info_menu_tranfer">转账</string>
+    <string name="chat_info_menu_video">视频</string>
+    <string name="chat_info_menu_album">相册</string>
+    <string name="chat_info_menu_application">应用</string>
+
+
+    <string-array name="lang_spinngarr">
+        <item>选择语言</item>
+        <item>简体中文</item>
+        <item>Enlish</item>
+    </string-array>
+</resources>

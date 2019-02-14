@@ -2,6 +2,8 @@ package com.eladapp.elachat.walletspv;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -60,7 +62,13 @@ public class AssetpayActivity extends AppCompatActivity{
                 myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 myClip = ClipData.newPlainText("text", asset_adr.getText().toString());
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(AssetpayActivity.this,"已复制地址.", Toast.LENGTH_SHORT).show();
+                if(getlangconfig().equals("cn")){
+                    Toast.makeText(AssetpayActivity.this,"已复制地址.", Toast.LENGTH_SHORT).show();
+                }else if(getlangconfig().equals("en")){
+                    Toast.makeText(AssetpayActivity.this,"Copied address.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AssetpayActivity.this,"已复制地址.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         //生成二维码
@@ -82,5 +90,19 @@ public class AssetpayActivity extends AppCompatActivity{
     }
     public void back(View view){
         finish();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

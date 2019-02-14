@@ -2,6 +2,8 @@ package com.eladapp.elachat.chat;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -95,7 +97,13 @@ public class Fragmentwallet extends Fragment {
         }else{
             asset_bg.setVisibility(View.VISIBLE);
             asset_sum_line.setVisibility(View.VISIBLE);
-            assetsum.setText("总资产：≈ "+getblance());
+            if(getlangconfig().equals("cn")){
+                assetsum.setText("总资产：≈ "+getblance());
+            }else if(getlangconfig().equals("en")){
+                assetsum.setText("Assets：≈ "+getblance());
+            }else{
+                assetsum.setText("总资产：≈ "+getblance());
+            }
             asset_ela.setVisibility(View.VISIBLE);
             token_ela_sum.setText(getblance());
             final String path = "http://ela.chat/quota/op.php?parm=detail&maincoin=usdt&subcoin=ela";
@@ -170,10 +178,10 @@ public class Fragmentwallet extends Fragment {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            System.out.println("链接错误："+e.getMessage());
+            //System.out.println("链接错误："+e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("异常错误："+e.getMessage());
+            //System.out.println("异常错误："+e.getMessage());
         }
         return price;
     }
@@ -186,4 +194,18 @@ public class Fragmentwallet extends Fragment {
           elasum.setText("$"+String.valueOf(Double.valueOf(curprice)*Double.valueOf(getblance()))+"(huobi)");
         }
     };
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
+    }
 }

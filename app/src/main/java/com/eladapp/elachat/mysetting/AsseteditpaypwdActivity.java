@@ -1,6 +1,8 @@
 package com.eladapp.elachat.mysetting;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,10 +41,22 @@ public class AsseteditpaypwdActivity extends AppCompatActivity {
                 if(checkpwd){
                     String editrs = updatepaypwd(old_paypwd.getText().toString(),re_new_paypwd.getText().toString());
                     if(editrs.equals("ok")){
-                        Toast.makeText(getApplicationContext(), "修改成功.", Toast.LENGTH_SHORT).show();
+                        if(getlangconfig().equals("cn")){
+                            Toast.makeText(getApplicationContext(), "修改成功.", Toast.LENGTH_SHORT).show();
+                        }else if(getlangconfig().equals("en")){
+                            Toast.makeText(getApplicationContext(), "Modified Success.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "修改成功.", Toast.LENGTH_SHORT).show();
+                        }
                         finish();
                     }else{
-                        Toast.makeText(getApplicationContext(), "原支付密码不正确.", Toast.LENGTH_SHORT).show();
+                        if(getlangconfig().equals("cn")){
+                            Toast.makeText(getApplicationContext(), "原支付密码不正确.", Toast.LENGTH_SHORT).show();
+                        }else if(getlangconfig().equals("en")){
+                            Toast.makeText(getApplicationContext(), "The original payment password is incorrect.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "原支付密码不正确.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -56,12 +70,24 @@ public class AsseteditpaypwdActivity extends AppCompatActivity {
     }
     public void checkoldornewpwd(String oldpwd,String newpwd,String confirmnewpwd){
         if(oldpwd.equals("")){
-            Toast.makeText(getApplicationContext(),"旧密码不能为空.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(getApplicationContext(),"旧密码不能为空.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(getApplicationContext(),"Old passwords cannot be empty.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"旧密码不能为空.",Toast.LENGTH_SHORT).show();
+            }
             checkpwd = false;
             return;
         }
         if(!newpwd.equals(confirmnewpwd) || newpwd.equals("")){
-            Toast.makeText(getApplicationContext(),"两次输入新密码不一致.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(getApplicationContext(),"两次输入新密码不一致.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(getApplicationContext(),"Two inconsistent new passwords.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"两次输入新密码不一致.",Toast.LENGTH_SHORT).show();
+            }
             checkpwd = false;
             return;
         }
@@ -80,5 +106,19 @@ public class AsseteditpaypwdActivity extends AppCompatActivity {
     }
     public void back(View view){
         finish();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

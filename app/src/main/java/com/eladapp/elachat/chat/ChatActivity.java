@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -142,13 +144,26 @@ public class ChatActivity extends AppCompatActivity{
                 String toadr = toaddress.getText().toString();
 
                 if(toadr.equals("")){
-                    Toast.makeText(ChatActivity.this,"对方不在线.", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")){
+                        Toast.makeText(ChatActivity.this,"对方不在线.", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(ChatActivity.this,"Offline.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(ChatActivity.this,"对方不在线.", Toast.LENGTH_SHORT).show();
+                    }
                 }else if(toadr.equals("Myassetadr:ERRONOWALLETADR")){
-                    Toast.makeText(ChatActivity.this,"对方暂无创建资产钱包,可先通知先创建.", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")){
+                        Toast.makeText(ChatActivity.this,"对方暂无创建资产钱包,可先通知先创建.", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(ChatActivity.this,"If the other party has not created the asset wallet for the time being, it may notify the other party to create the asset wallet first..", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(ChatActivity.this,"对方暂无创建资产钱包,可先通知先创建.", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     String[] toadrarr = toadr.split(":");
                     if(toadrarr[0].equals("Myassetadr")){
-                        startActivity(new Intent(ChatActivity.this, AssetchatsendconfirmActivity.class).putExtra("touid",frienduserid).putExtra("toaddress",toadrarr[1]));
+                        Toast.makeText(ChatActivity.this,"暂无.", Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(ChatActivity.this, AssetchatsendconfirmActivity.class).putExtra("touid",frienduserid).putExtra("toaddress",toadrarr[1]));
                     }
                 }
              }
@@ -287,7 +302,13 @@ public class ChatActivity extends AppCompatActivity{
                             if (isCancel) {
                                 isCancel = false;
                                 mediaUtils.stopRecordUnSave();
-                                Toast.makeText(ChatActivity.this, "取消保存", Toast.LENGTH_SHORT).show();
+                                if(getlangconfig().equals("cn")){
+                                    Toast.makeText(ChatActivity.this, "取消保存", Toast.LENGTH_SHORT).show();
+                                }else if(getlangconfig().equals("en")){
+                                    Toast.makeText(ChatActivity.this, "Cancel save", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(ChatActivity.this, "取消保存", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 int duration = getDuration(chronometer.getText().toString());
                                 switch (duration) {
@@ -295,7 +316,13 @@ public class ChatActivity extends AppCompatActivity{
                                         break;
                                     case -2:
                                         mediaUtils.stopRecordUnSave();
-                                        Toast.makeText(ChatActivity.this, "时间太短", Toast.LENGTH_SHORT).show();
+                                        if(getlangconfig().equals("cn")){
+                                            Toast.makeText(ChatActivity.this, "时间太短", Toast.LENGTH_SHORT).show();
+                                        }else if(getlangconfig().equals("en")){
+                                            Toast.makeText(ChatActivity.this, "Under time", Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Toast.makeText(ChatActivity.this, "时间太短", Toast.LENGTH_SHORT).show();
+                                        }
                                         break;
                                     default:
                                         mediaUtils.stopRecordSave();
@@ -345,7 +372,13 @@ public class ChatActivity extends AppCompatActivity{
             if (SystemClock.elapsedRealtime() - chronometer.getBase() > 60 * 1000) {
                 stopAnim();
                 mediaUtils.stopRecordSave();
-                Toast.makeText(ChatActivity.this, "录音超时", Toast.LENGTH_SHORT).show();
+                if(getlangconfig().equals("cn")){
+                    Toast.makeText(ChatActivity.this, "录音超时", Toast.LENGTH_SHORT).show();
+                }else if(getlangconfig().equals("en")){
+                    Toast.makeText(ChatActivity.this, "Recording timeout", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ChatActivity.this, "录音超时", Toast.LENGTH_SHORT).show();
+                }
                 String path = mediaUtils.getTargetFilePath();
                // Toast.makeText(ChatActivity.this, "文件以保存至：" + path, Toast.LENGTH_SHORT).show();
 
@@ -792,7 +825,6 @@ public class ChatActivity extends AppCompatActivity{
             String fromid = intent.getExtras().getString("fromid");
             Integer msgcate = intent.getExtras().getInt("msgcate");
             //Myassetadr:ERRONOWALLETADR
-            System.out.println("消息："+message);
             if(fromid.equals(frienduserid)){
                 String[] receivemsg = message.split(":");
                 if(message.equals("Myassetadr:ERRONOWALLETADR")){
@@ -816,5 +848,19 @@ public class ChatActivity extends AppCompatActivity{
         // TODO Auto-generated method stub
         unregisterReceiver(broadcastReceiver);
         super.onDestroy();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

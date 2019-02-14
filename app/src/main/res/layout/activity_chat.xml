@@ -27,7 +27,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
-            android:text="聊天"
+            android:text="@string/chat_info"
             android:textColor="#FEFEFE"
             android:textSize="16sp" />
 
@@ -125,7 +125,7 @@
             android:background="@drawable/mic_bg"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:text="按下说话"
+            android:text="@string/chat_info_menu_press_speak"
             android:textColor="@color/black"
             android:textSize="13sp" />
 
@@ -158,7 +158,7 @@
             android:layout_marginRight="5dip"
             android:background="#1296db"
             android:textColor="#fff"
-            android:text="发送"/>
+            android:text="@string/chat_info_send_message"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/bottommenu"
@@ -194,7 +194,7 @@
                 android:id="@+id/firendname"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="转账"
+                android:text="@string/chat_info_menu_tranfer"
                 android:layout_marginTop="75dp"
                 android:textColor="#444"
                 android:textAlignment="center"
@@ -220,7 +220,7 @@
                 android:id="@+id/firendnameaa"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="视频"
+                android:text="@string/chat_info_menu_video"
                 android:textAlignment="center"
                 android:layout_marginTop="75dp"
                 android:textColor="#444"
@@ -246,7 +246,7 @@
                 android:id="@+id/firendnamea"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="相册"
+                android:text="@string/chat_info_menu_album"
                 android:textAlignment="center"
                 android:layout_marginTop="75dp"
                 android:textColor="#444"
@@ -273,7 +273,7 @@
                 android:id="@+id/firendnamee"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="应用"
+                android:text="@string/chat_info_menu_application"
                 android:textAlignment="center"
                 android:layout_marginTop="75dp"
                 android:textColor="#444"

@@ -3,6 +3,8 @@ package com.eladapp.elachat.mysetting;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -47,7 +49,13 @@ public class AssetoutputprvstoreActivity extends AppCompatActivity {
                 myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 myClip = ClipData.newPlainText("text", outputkeystorec.getText().toString());
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(AssetoutputprvstoreActivity.this,"KeyStore已复制.", Toast.LENGTH_SHORT).show();
+                if(getlangconfig().equals("cn")){
+                    Toast.makeText(AssetoutputprvstoreActivity.this,"KeyStore已复制.", Toast.LENGTH_SHORT).show();
+                }else if(getlangconfig().equals("en")){
+                    Toast.makeText(AssetoutputprvstoreActivity.this,"KeyStore has been copyed.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AssetoutputprvstoreActivity.this,"KeyStore已复制.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         outputkeystorebtn.setOnClickListener(new View.OnClickListener() {
@@ -90,17 +98,43 @@ public class AssetoutputprvstoreActivity extends AppCompatActivity {
     }
     public void checkkeystorein(String keystorepwd,String rekeystorepwd,String curpaypwd){
         if(!keystorepwd.equals(rekeystorepwd) || keystorepwd.equals("")){
-            Toast.makeText(getApplicationContext(),"两次输入keystore密码不一致.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(getApplicationContext(),"两次输入keystore密码不一致.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(getApplicationContext(),"Twice input keystore password is differences.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"两次输入keystore密码不一致.",Toast.LENGTH_SHORT).show();
+            }
             checkpwd = false;
             return;
         }
         if(curpaypwd.equals("")){
-            Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(getApplicationContext(),"Current wallet payment password cannot be empty.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            }
             checkpwd = false;
             return;
         }
     }
     public void back(View view){
         finish();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

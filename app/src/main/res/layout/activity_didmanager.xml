@@ -24,7 +24,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="DID管理"
+            android:text="@string/didmanage"
             android:textColor="#fff"
             android:textSize="16sp" />
         <ImageView
@@ -70,7 +70,7 @@
             android:layout_gravity="center"
             android:textColor="#333333"
             android:layout_marginRight="10dp"
-            android:text="昵称："/>
+            android:text="@string/didmanage_nickname"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,7 +112,7 @@
             android:textColor="#333333"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:text="账号地址："/>
+            android:text="@string/didmanage_carrier_address"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -153,7 +153,7 @@
             android:textColor="#333333"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:text="钱包地址："/>
+            android:text="@string/didmanage_wallet_address"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

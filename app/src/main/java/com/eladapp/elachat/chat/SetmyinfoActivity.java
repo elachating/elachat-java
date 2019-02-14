@@ -1,5 +1,7 @@
 package com.eladapp.elachat.chat;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +27,13 @@ public class SetmyinfoActivity extends AppCompatActivity {
         myinfo = chatcarrier.getmyinfo();
         String myusername = myinfo.getName();
         if(myusername.equals("")){
-            edtnickname.setText("我的昵称");
+            if(getlangconfig().equals("cn")){
+                edtnickname.setText("我的昵称");
+            }else if(getlangconfig().equals("en")){
+                edtnickname.setText("My NickName");
+            }else{
+                edtnickname.setText("我的昵称");
+            }
         }else{
             edtnickname.setText(myusername);
         }
@@ -34,10 +42,22 @@ public class SetmyinfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nickname = edtnickname.getText().toString();
                 if(nickname.equals("")){
-                    Toast.makeText(getApplicationContext(), "昵称不能为空", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")){
+                        Toast.makeText(getApplicationContext(), "昵称不能为空", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(getApplicationContext(), "Nickname cannot be empty", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "昵称不能为空", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     chatcarrier.updatemyinfo(nickname,"");
-                    Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")){
+                        Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(getApplicationContext(), "Update success", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
+                    }
                     finish();
                 }
             }
@@ -50,5 +70,19 @@ public class SetmyinfoActivity extends AppCompatActivity {
     }
     public void back(View view){
         finish();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

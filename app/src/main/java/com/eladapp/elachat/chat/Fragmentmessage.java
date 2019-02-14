@@ -35,7 +35,6 @@ public class Fragmentmessage extends Fragment {
         View view = inflater.inflate(R.layout.activity_message, container,false);
         listView = (ListView)view.findViewById(R.id.lv);
         lists = db.getfriendmessagelistnoread();
-        System.out.println("新消息："+lists.toString());
         ListViewAdapter adapters = new ListViewAdapter(getActivity(), lists);
         listView.setAdapter(adapters);
         return view;

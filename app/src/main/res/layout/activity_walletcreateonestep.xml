@@ -18,7 +18,7 @@
            android:gravity="center"
            android:textColor="#333333"
            android:textSize="16dp"
-           android:text="助记词"/>
+           android:text="@string/createwalletone"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_marginRight="20dp"
             android:gravity="left"
             android:textColor="#333333"
-            android:text="请依次记录到纸上，该助记词是回复当前资产的唯一凭据，请妥善保存并以防他人偷窥。丢失后，无法恢复，本应用不存储任何资产信息。"/>
+            android:text="@string/createwalletone_info_tip"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -92,7 +92,7 @@
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
             android:gravity="center"
-            android:text="上一个"
+            android:text="@string/createwalletone_priv_button"
             android:textColor="#fff"
             android:textSize="18sp" />
         <Button
@@ -106,7 +106,7 @@
             android:paddingBottom="7dp"
             android:gravity="center"
             android:paddingTop="7dp"
-            android:text="下一个"
+            android:text="@string/createwalletone_next_button"
             android:textColor="#fff"
             android:textSize="18sp" />
     </LinearLayout>
@@ -129,7 +129,7 @@
             android:gravity="center"
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
-            android:text="我已记下"
+            android:text="@string/createwalletone_confrim_button"
             android:textColor="#fff"
             android:textSize="18sp" />
     </LinearLayout>

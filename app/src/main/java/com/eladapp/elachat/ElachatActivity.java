@@ -40,10 +40,10 @@ public class ElachatActivity extends AppCompatActivity {
                 .setInActiveColor("#8e8e8e")//默认未选择颜色
                 .setBarBackgroundColor("#ECECEC");//默认背景色
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.bottom_message_checked,"消息").setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_message_unchecked)))
-                .addItem(new BottomNavigationItem(R.drawable.bottom_app_checked,"应用").setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_app_unchecked)))
-                .addItem(new BottomNavigationItem(R.drawable.bottom_asset_checked,"资产").setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_asset_unchecked)))
-                .addItem(new BottomNavigationItem(R.drawable.bottom_me_checked,"我").setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_me_unchecked)))
+                .addItem(new BottomNavigationItem(R.drawable.bottom_message_checked,getResources().getString(R.string.message)).setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_message_unchecked)))
+                .addItem(new BottomNavigationItem(R.drawable.bottom_app_checked,getResources().getString(R.string.dapps)).setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_app_unchecked)))
+                .addItem(new BottomNavigationItem(R.drawable.bottom_asset_checked,getResources().getString(R.string.assets)).setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_asset_unchecked)))
+                .addItem(new BottomNavigationItem(R.drawable.bottom_me_checked,getResources().getString(R.string.profile)).setInactiveIcon(ContextCompat.getDrawable(this,R.drawable.bottom_me_unchecked)))
                 .setFirstSelectedPosition(ids)
                 .initialise();
         mFragmentManager = getFragmentManager();

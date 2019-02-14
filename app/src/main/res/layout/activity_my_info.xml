@@ -28,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="我的信息"
+            android:text="@string/myinfo"
             android:textColor="#FEFEFE"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -68,7 +68,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textColor="#353535"
-                        android:text="我的昵称"
+                        android:text="@string/myinfo_nickname"
                         android:singleLine="true"
                         android:textSize="16sp" />
 

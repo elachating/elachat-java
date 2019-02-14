@@ -39,6 +39,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="70dp"
+        android:visibility="gone"
         android:background="@drawable/four_border">
         <TextView
             android:layout_width="wrap_content"
@@ -62,4 +63,34 @@
             android:scaleType="fitXY"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/four_border">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="@string/appsetting_change_lang_tip"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/setlang_spinner"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:entries="@array/lang_spinngarr"
+            android:gravity="right">
+        </Spinner>
+    </RelativeLayout>
 </RelativeLayout>

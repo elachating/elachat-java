@@ -1,0 +1,136 @@
+<resources>
+    <!-- 底部菜单 -->
+    <string name="app_name">ElaChat</string>
+    <string name="assets">Asset</string>
+    <string name="dapps">APP</string>
+    <string name="message">Message</string>
+    <string name="profile">Me</string>
+    <!-- 加好友页面 -->
+    <string name="addfriend">Add friend</string>
+    <string name="addfriend_user_address">User address</string>
+    <string name="addfriend_bak_info">Remark info</string>
+    <string name="addfriend_add_button">Add friend</string>
+    <!-- 应用设置页面 -->
+    <string name="appsetting">App Setting</string>
+    <string name="appsetting_change_lang_tip">change language</string>
+    <!--  资产详细页面  -->
+    <string name="assetdetail">Assets</string>
+    <string name="assetdetail_pay">Transfer</string>
+    <string name="assetdetail_gather">Gather</string>
+    <!--  收款二维码页面  -->
+    <string name="assetreceive">Receive</string>
+    <!--  发送资产页面  -->
+    <string name="assetsend_info">Transfer</string>
+    <string name="assetsend_gather_address">Payment address</string>
+    <string name="assetsend_pay_amount">Amount</string>
+    <string name="assetsend_remark_info">Remarks information</string>
+    <string name="assetsend_send_button">Confirm</string>
+    <!--  新增资产菜单页面  -->
+    <string name="addasset_menu_one">Add Asset</string>
+    <!--  资产设置页面  -->
+    <string name="assetsetting">Asset Setting</string>
+    <string name="assetsetting_update_pay_password">Change Pay Password</string>
+    <string name="assetsetting_export_mnemonic">Export Mnemonic</string>
+    <string name="assetsetting_export_private_key">Export Private Key</string>
+    <!--  录音页面  -->
+    <string name="audio_info">Press to speak</string>
+    <!--  授权管理页面  -->
+    <string name="authormanage">Authorization management</string>
+    <string name="authormanage_mid_info">Permissions:  Useraddress,nickname of Carrier and asset address</string>
+    <string name="authormanage_refuse_button">Refuse</string>
+    <string name="authormanage_author_button">Authorization</string>
+    <!-- 创建资产助记词页面  -->
+    <string name="createwalletone">Mnemonic</string>
+    <string name="createwalletone_info_tip">Please record it on paper in turn. This mnemonic is the only evidence to reply to the current assets. Please keep it properly and prevent others from peeping. Lost, can not be restored, the application does not store any asset information.</string>
+    <string name="createwalletone_priv_button">Previous</string>
+    <string name="createwalletone_next_button">Next</string>
+    <string name="createwalletone_confrim_button">I have written down</string>
+    <!-- 创建资产设置支付密码   -->
+    <string name="createwallettow">Payment Password</string>
+    <string name="createwallettow_text_tip_one">Payment password (at least 8 letters combined with numbers)</string>
+    <string name="createwallettow_text_tip_tow">Confirm the payment password (at least 8 letters combined with numbers)</string>
+    <string name="createwallettow_confirm_button">Confirm</string>
+    <!-- 资产总界面   -->
+    <string name="mainassets">Assets</string>
+    <!-- 好友界面   -->
+    <string name="frienduserinfo">Friend Profile</string>
+    <string name="frienduserinfo_email">Email</string>
+    <string name="frienduserinfo_phone">Phone</string>
+    <string name="frienduserinfo_send_message">Send Message</string>
+    <!-- 设置我的昵称   -->
+    <string name="setmyinfo">Update NickName</string>
+    <string name="setmyinfo_save">Save</string>
+    <string name="setmyinfo_my_nick">My NickName</string>
+    <!-- 转账确认   -->
+    <string name="assetsendconfirm">Payment Password</string>
+    <string name="assetsendconfirm_confirm_button">Confirm</string>
+    <!-- 导出助记词页面   -->
+    <string name="exportmnemonic">Export Mnemonic</string>
+    <string name="exportmnemonic_pay_pwd">Asset Payment Password</string>
+    <string name="exportmnemonic_export">Export</string>
+    <!-- 导出Keystore文件   -->
+    <string name="exportkeystore">导出Keystore文件</string>
+    <string name="exportkeystore_set_keystore_pwd">Set Export Keystore Password</string>
+    <string name="exportkeystore_set_keystore_pwd_re">ReSet Export Keystore Password</string>
+    <string name="exportkeystore_pay_pwd">Export Keystore File</string>
+    <string name="exportkeystore_confrim_button">Export</string>
+    <!-- 新好友列表   -->
+    <string name="newfriendlist">New Friend</string>
+    <!-- 我的界面   -->
+    <string name="my">Me</string>
+    <string name="my_assets_set">Assets Set</string>
+    <string name="my_did_set">DID Manage</string>
+    <string name="my_message_set">Message Set</string>
+    <string name="my_app_set">Application Set</string>
+    <string name="my_author_set">License Agreement</string>
+    <string name="my_support">Support Us</string>
+    <string name="my_help_center">Help Center</string>
+    <string name="my_version_update">Version Update</string>
+    <!-- 消息设置   -->
+    <string name="messageset_info">Message Set</string>
+    <string name="messageset_info_tip">Change equipment and maintain good friendship</string>
+    <!-- 消息界面   -->
+    <string name="messagelist">Message</string>
+    <!-- 许可协议   -->
+    <string name="authorinfo">License Agreement</string>
+    <!-- 朋友列表   -->
+    <string name="friendlist">Contacts</string>
+    <string name="friendlist_me">Me</string>
+    <string name="friendlist_new_friend">New Friend</string>
+    <!-- 修改支付密码   -->
+    <string name="updatepaypwd">Update Payment Password</string>
+    <string name="updatepaypwd_old_pay_pwd">Old Payment Password</string>
+    <string name="updatepaypwd_pay_pwd">New Payment Password</string>
+    <string name="updatepaypwd_re_pay_pwd">Input New Payment Password</string>
+    <string name="updatepaypwd_confirm_button">Confirm</string>
+    <!-- 我的资料   -->
+    <string name="myinfo">My Information</string>
+    <string name="myinfo_nickname">My Nickname</string>
+    <!-- DID管理   -->
+    <string name="didmanage">DID Manage</string>
+    <string name="didmanage_nickname">NickName</string>
+    <string name="didmanage_carrier_address">Carrier UserId</string>
+    <string name="didmanage_wallet_address">Asset Address</string>
+    <!-- 加好友与群组菜单   -->
+    <string name="joinfriendgroup_friend">Add Friend</string>
+    <string name="joinfriendgroup_group">Join Group</string>
+    <!-- 聊天界面转账   -->
+    <string name="chat_tranfer_amount">Amount</string>
+    <string name="chat_tranfer_remark">Remarks</string>
+    <string name="chat_tranfer_pay_pwd">Payment Password</string>
+    <string name="chat_tranfer_confirm_button">Confirm</string>
+    <!-- 聊天界面   -->
+    <string name="chat_info">Chat</string>
+    <string name="chat_info_menu_press_speak">Pressed Speak</string>
+    <string name="chat_info_send_message">Send</string>
+    <string name="chat_info_menu_tranfer">Tranfer</string>
+    <string name="chat_info_menu_video">Video</string>
+    <string name="chat_info_menu_album">Album</string>
+    <string name="chat_info_menu_application">APP</string>
+
+    <string-array name="lang_spinngarr">
+        <item>Choose language</item>
+        <item>Chinese</item>
+        <item>英文</item>
+    </string-array>
+</resources>

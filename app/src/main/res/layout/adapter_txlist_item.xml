@@ -26,7 +26,7 @@
                 android:src="@drawable/down_gray" />
             <TextView
                 android:id="@+id/txidconfirmstatus"
-                android:layout_width="60dp"
+                android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="40dp"
                 android:textColor="#333333"

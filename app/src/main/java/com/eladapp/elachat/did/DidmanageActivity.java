@@ -64,7 +64,7 @@ public class DidmanageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(DidmanageActivity.this);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
-                integrator.setPrompt("请扫码授权"); //底部的提示文字，设为""可以置空
+                integrator.setPrompt("Please Scan To grant authorization"); //底部的提示文字，设为""可以置空
                 integrator.setCameraId(0); //前置或者后置摄像头
                 integrator.setBeepEnabled(false); //扫描成功的「哔哔」声，默认开启
                 integrator.setBarcodeImageEnabled(true);//是否保留扫码成功时候的截图

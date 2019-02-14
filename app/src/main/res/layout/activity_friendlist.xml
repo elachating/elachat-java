@@ -28,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="联系人"
+            android:text="@string/friendlist"
             android:textColor="#FEFEFE"
             android:textSize="16sp" />
         <ImageView
@@ -90,7 +90,7 @@
                     android:singleLine="true"
                     android:textColor="#353535"
                     android:textSize="16sp"
-                    android:text="我"/>
+                    android:text="@string/friendlist_me"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -132,7 +132,7 @@
                     android:singleLine="true"
                     android:textColor="#353535"
                     android:textSize="16sp"
-                    android:text="新的朋友"/>
+                    android:text="@string/friendlist_new_friend"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

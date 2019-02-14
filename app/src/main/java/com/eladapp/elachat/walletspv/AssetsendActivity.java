@@ -1,6 +1,8 @@
 package com.eladapp.elachat.walletspv;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,11 +42,6 @@ public class AssetsendActivity extends AppCompatActivity{
                 long fee;
                 if(checkisnull()){
                     //手续费
-
-
-
-
-
                     double num;
                     java.text.DecimalFormat myformat=new java.text.DecimalFormat("#0.00000000");
                     num=Double.parseDouble(paysum.getText().toString());
@@ -64,7 +61,13 @@ public class AssetsendActivity extends AppCompatActivity{
                         System.out.println("错误："+e.getMessage().toString());
                         JSONObject jsonobj = JSONObject.fromObject(e.getMessage());
                         if(jsonobj.get("Message").equals("Available token is not enough")){
-                            Toast.makeText(AssetsendActivity.this,"余额不足.", Toast.LENGTH_SHORT).show();
+                            if(getlangconfig().equals("cn")){
+                                Toast.makeText(AssetsendActivity.this,"余额不足.", Toast.LENGTH_SHORT).show();
+                            }else if(getlangconfig().equals("en")){
+                                Toast.makeText(AssetsendActivity.this,"token is not enough.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(AssetsendActivity.this,"余额不足.", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }else{
@@ -77,12 +80,25 @@ public class AssetsendActivity extends AppCompatActivity{
     public boolean checkisnull(){
         ischeck = true;
         if(toassetadr.getText().toString().equals("") || !toassetadr.getText().toString().substring(0,1).equals("E") || toassetadr.getText().toString().length()!=34){
-            Toast.makeText(AssetsendActivity.this,"接收Token地址错误.", Toast.LENGTH_SHORT).show();
+
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(AssetsendActivity.this,"接收Token地址错误.", Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(AssetsendActivity.this,"Invalid receiving Token address.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(AssetsendActivity.this,"接收Token地址错误.", Toast.LENGTH_SHORT).show();
+            }
             ischeck = false;
         }else{
 
             if(!NumberUtils.isNumber(paysum.getText().toString()) || paysum.getText().toString().equals("0")){
-                Toast.makeText(AssetsendActivity.this,"金额错误.", Toast.LENGTH_SHORT).show();
+                if(getlangconfig().equals("cn")){
+                    Toast.makeText(AssetsendActivity.this,"金额错误.", Toast.LENGTH_SHORT).show();
+                }else if(getlangconfig().equals("en")){
+                    Toast.makeText(AssetsendActivity.this,"Amount error.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AssetsendActivity.this,"金额错误.", Toast.LENGTH_SHORT).show();
+                }
                 ischeck = false;
             }
 
@@ -113,4 +129,18 @@ public class AssetsendActivity extends AppCompatActivity{
         finish();
     }
 
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
+    }
 }

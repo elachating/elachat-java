@@ -1,5 +1,7 @@
 package com.eladapp.elachat.did;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.eladapp.elachat.R;
 import com.eladapp.elachat.db.Db;
+import com.eladapp.elachat.utils.StreamTools;
 
 import net.sf.json.JSONObject;
 
@@ -23,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,6 +55,7 @@ public class DidAuthorActivity extends AppCompatActivity{
     private String state = "";
     private String pubkey = "";
     private Boolean isdid;
+    private TextView author_mid_tip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +68,7 @@ public class DidAuthorActivity extends AppCompatActivity{
         author_didprvkey = (TextView)findViewById(R.id.author_didprvkey);
         refusebtn = (Button) findViewById(R.id.author_refuse_btn);
         authorbtn = (Button) findViewById(R.id.author_btn);
-
+        author_mid_tip = (TextView)findViewById(R.id.author_mid_tip);
         //handler=new Handler();
         db = new Db();
         Uri uridata = this.getIntent().getData();
@@ -98,8 +103,14 @@ public class DidAuthorActivity extends AppCompatActivity{
         String [] statearr = urlb[7].split("=");
         state = statearr[1].toString();
 
+        if(getlangconfig().equals("cn")){
+            author_mid_tip.setText("该网页由"+author_mid_tip+"开发，向其提供以下权限");
+        }else if(getlangconfig().equals("en")){
+            author_mid_tip.setText("The website is developed by "+author_mid_tip+",Provide it with the following permissions.");
+        }else{
+            author_mid_tip.setText("该网页由"+author_mid_tip+"开发，向其提供以下权限");
+        }
         System.out.println("参数内容："+uridata.toString());
-
         JSONArray didinfo = db.getdidinfo();
         if(didinfo.toString().equals("[]")){
            //
@@ -112,9 +123,9 @@ public class DidAuthorActivity extends AppCompatActivity{
                 Chatcarrier chatcarrier = new Chatcarrier();
                 UserInfo myinfo = chatcarrier.getmyinfo();
                 if(myinfo.getName().equals(jsonobjects.get("nickname").toString())){
-                    nickname.setText(" "+jsonobjects.get("nickname").toString());
+                    nickname.setText(jsonobjects.get("nickname").toString());
                 }else{
-                    nickname.setText(" "+myinfo.getName().toString());
+                    nickname.setText(myinfo.getName().toString());
                 }
                 useradr.setText(jsonobjects.get("useradr").toString());
                 walletadr.setText(jsonobjects.get("walletadr").toString());
@@ -124,40 +135,149 @@ public class DidAuthorActivity extends AppCompatActivity{
                 e.getMessage();
             }
         }
+        /*
+        if(didname.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+        }
+        if(nickname.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
+        }
+        if(walletadr.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
+        }*/
         authorbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //构建POST，推送消息到指定网站
                 String author_app_didpubkey = author_didpubkey.getText().toString();
-                System.out.println("自己公钥信息："+author_app_didpubkey);
-                //首先检测必填参数是否为空
-                if(callbackurl.equals("")){
-                    Toast.makeText(getApplicationContext(), "回调地址为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(didid.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数DID为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(appid.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数APPID为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(appname.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数appname为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(sign.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数sign为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(appcate.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数appcate为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(pubkey.equals("")){
-                    Toast.makeText(getApplicationContext(), "参数pubkey为空,不能授权!", Toast.LENGTH_SHORT).show();
-                    return;
+
+                if(getlangconfig().equals("cn")){
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(nickname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(walletadr.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    //首先检测必填参数是否为空
+                    if(callbackurl.equals("")){
+                        Toast.makeText(getApplicationContext(), "回调地址为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(didid.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数DID为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appid.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数APPID为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appname.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数appname为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(sign.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数sign为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appcate.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数appcate为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(pubkey.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数pubkey为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                }else if(getlangconfig().equals("en")){
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Please go to my DID management settings to create DID.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(nickname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Please set up your nickname on your friends list.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(walletadr.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "You haven't created an asset yet. Go to the assets to create an asset.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    //首先检测必填参数是否为空
+                    if(callbackurl.equals("")){
+                        Toast.makeText(getApplicationContext(), "Callback address is empty and cannot be authorized", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(didid.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter DID is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appid.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter APPID is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appname.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter appname is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(sign.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter sign is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appcate.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter appcate is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(pubkey.equals("")){
+                        Toast.makeText(getApplicationContext(), "The parameter pubkey is empty and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }else{
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(nickname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(walletadr.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    //首先检测必填参数是否为空
+                    if(callbackurl.equals("")){
+                        Toast.makeText(getApplicationContext(), "回调地址为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(didid.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数DID为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appid.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数APPID为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appname.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数appname为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(sign.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数sign为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(appcate.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数appcate为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(pubkey.equals("")){
+                        Toast.makeText(getApplicationContext(), "参数pubkey为空,不能授权!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 //然后验证签名
                 String url = "http://203.189.235.252:8080/trucks/verifydid.jsp?didpubkey="+pubkey+"&sig="+sign+"&msg="+didid;
@@ -175,7 +295,7 @@ public class DidAuthorActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //拒绝授权
-
+                finish();
             }
         });
     }
@@ -188,7 +308,13 @@ public class DidAuthorActivity extends AppCompatActivity{
                    Bundle b = msg.getData();
                    String res = b.getString("res");
                    if(res.equals("0")){
-                       Toast.makeText(getApplicationContext(), "验证签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                       if(getlangconfig().equals("cn")){
+                           Toast.makeText(getApplicationContext(), "验证签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                       }else if(getlangconfig().equals("en")){
+                           Toast.makeText(getApplicationContext(), "Validation signature failed and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                       }else{
+                           Toast.makeText(getApplicationContext(), "验证签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                       }
                    }else{
                        String url = "http://203.189.235.252:8080/trucks/signdid.jsp?didprvkey="+author_app_didprvkey+"&msg="+didid;
                        URL urls = null;
@@ -200,25 +326,61 @@ public class DidAuthorActivity extends AppCompatActivity{
                        }
                    }
                 }else{
-                   Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                   if(getlangconfig().equals("cn")){
+                       Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                   }else if(getlangconfig().equals("en")){
+                       Toast.makeText(getApplicationContext(), "Server connection failed and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                   }else{
+                       Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                   }
                }
             }else if(msg.obj.equals("didsign")){
                 if(msg.what==1){
                     Bundle b = msg.getData();
                     String res = b.getString("res").replaceAll(" ", "");
                     if(res.equals("")){
-                        Toast.makeText(getApplicationContext(), "获取签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                        if(getlangconfig().equals("cn")){
+                            Toast.makeText(getApplicationContext(), "获取签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                        }else if(getlangconfig().equals("en")){
+                            Toast.makeText(getApplicationContext(), "Failed to obtain signature, not authorized.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "获取签名失败,不能授权!", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         sendpostmsg(res);
                     }
                 }else{
-                    Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")){
+                        Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(getApplicationContext(), "Server connection failed and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }else if(msg.obj.equals("pushappinfo")){
                 if(msg.what==1){
-
+                    Bundle b = msg.getData();
+                    String res = b.getString("res").replaceAll(" ", "");
+                    if(res.equals("1")){
+                        finish();
+                    }else{
+                        if(getlangconfig().equals("cn")){
+                            Toast.makeText(getApplicationContext(), "授权失败!", Toast.LENGTH_SHORT).show();
+                        }else if(getlangconfig().equals("en")){
+                            Toast.makeText(getApplicationContext(), "privilege grant failed", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "授权失败!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }else{
-                    Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    if(getlangconfig().equals("cn")) {
+                        Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    }else if(getlangconfig().equals("en")){
+                        Toast.makeText(getApplicationContext(), "Server connection failed and cannot be authorized.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "服务器连接失败,不能授权!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         };
@@ -334,14 +496,22 @@ public class DidAuthorActivity extends AppCompatActivity{
                     conn.setRequestMethod("POST");
                     conn.setReadTimeout(5000);
                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                    String data = "did="+ URLEncoder.encode(author_app_did,"utf-8")+"&nickname="+ URLEncoder.encode(author_app_nickname,"utf-8")+"&useradr=" + URLEncoder.encode(author_app_useradr,"utf-8")+"&didpubkey=" + URLEncoder.encode(author_app_didpubkey,"utf-8")+"&walletadr=" + URLEncoder.encode(author_app_walletadr,"utf-8")+"&sign=" + URLEncoder.encode(addsign,"utf-8");
+                    String data = "{\"did\":\""+ URLEncoder.encode(author_app_did,"utf-8")  +"\",\"nickname\":\""+ URLEncoder.encode(author_app_nickname,"utf-8") +"\",\"useradr\":\""+ URLEncoder.encode(author_app_useradr,"utf-8") +"\",\"didpubkey\":\""+ URLEncoder.encode(author_app_didpubkey,"utf-8") +"\",\"walletadr\":\""+ URLEncoder.encode(author_app_walletadr,"utf-8") +"\",\"sign\":\""+ URLEncoder.encode(addsign,"utf-8") +"\",\"state\":\""+ state +"\"}";
+                    //String data = "did="+ URLEncoder.encode(author_app_did,"utf-8")+"&nickname="+ URLEncoder.encode(author_app_nickname,"utf-8")+"&useradr=" + URLEncoder.encode(author_app_useradr,"utf-8")+"&didpubkey=" + URLEncoder.encode(author_app_didpubkey,"utf-8")+"&walletadr=" + URLEncoder.encode(author_app_walletadr,"utf-8")+"&sign=" + URLEncoder.encode(addsign,"utf-8");
                     conn.setRequestProperty("Content-Length",String.valueOf(data.length()));
                     conn.setDoOutput(true);
                     conn.getOutputStream().write(data.getBytes());
                     int code = conn.getResponseCode();
                     if (code == 200) {
+                        InputStream in = conn.getInputStream();
+                        // 把inputstream转换成字符串
+                        String content = StreamTools.readString(in);
+
                         System.out.println("推送成功！");
                         Message msg = Message.obtain();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("res",content.toString());
+                        msg.setData(bundle);
                         msg.what = 1;
                         msg.obj = "pushappinfo";
                         handler.sendMessage(msg);
@@ -362,4 +532,19 @@ public class DidAuthorActivity extends AppCompatActivity{
             }
         }.start();
     }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
+    }
 }
+

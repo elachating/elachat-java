@@ -9,22 +9,13 @@
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
         android:background="#0070C9">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:onClick="back"
-            android:src="@drawable/left_arrow_white" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="46dp"
-            android:text="授权管理"
+            android:gravity="center"
+            android:text="@string/authormanage"
             android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -180,6 +171,7 @@
             android:visibility="visible"
             android:gravity="center">
             <TextView
+                android:id="@+id/author_mid_tip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -196,7 +188,7 @@
             android:layout_height="match_parent"
             android:textColor="#aaaaaa"
             android:gravity="center"
-            android:text="权限:Carrier昵称、Useraddress、钱包收币地址"/>
+            android:text="@string/authormanage_mid_info"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -209,25 +201,24 @@
         <Button
             android:id="@+id/author_refuse_btn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#333333"
-            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:textSize="12dp"
-            android:text="拒绝"/>
+            android:background="#aeb1b3"
+            android:text="@string/authormanage_refuse_button"/>
         <Button
             android:id="@+id/author_btn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:textSize="12dp"
             android:background="#0070C9"
-            android:text="授权"/>
+            android:text="@string/authormanage_author_button"/>
     </LinearLayout>
 </RelativeLayout>

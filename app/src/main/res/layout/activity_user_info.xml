@@ -29,7 +29,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
-            android:text="好友资料"
+            android:text="@string/frienduserinfo"
             android:textColor="#FEFEFE"
             android:textSize="16sp" />
 
@@ -103,7 +103,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:paddingLeft="8dp"
-                android:text="电子邮箱"
+                android:text="@string/frienduserinfo_email"
                 android:textColor="#353535"
                 android:textSize="16sp" />
             <TextView
@@ -135,7 +135,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:paddingLeft="8dp"
-                android:text="联系电话"
+                android:text="@string/frienduserinfo_phone"
                 android:textColor="#353535"
                 android:textSize="16sp" />
 

@@ -22,43 +22,34 @@
             android:onClick="back"
             android:src="@drawable/left_arrow_white" />
         <TextView
+            android:id="@+id/dappurl_site_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="@string/messageset_info"
+            android:text=""
             android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
-    <RelativeLayout
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/four_border">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:text="@string/messageset_info_tip"
-            android:textColor="#333333"
-            android:textSize="16sp" />
-        <Switch
-            android:id="@+id/messagesettingval"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:defaultFocusHighlightEnabled="false"
-            android:thumb="@drawable/switch_custom_thumb_selector"
-            android:track="@drawable/switch_custom_track_selector"
-            android:scaleType="fitXY"/>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:max="100"
+            android:progress="0"
+            android:indeterminateTint="#07500c"
+            android:visibility="gone"/>
+    </FrameLayout>
 
 </RelativeLayout>

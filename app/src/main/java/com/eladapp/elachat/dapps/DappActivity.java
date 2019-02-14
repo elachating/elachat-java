@@ -1,6 +1,9 @@
-package com.eladapp.elachat.mysetting;
+package com.eladapp.elachat.dapps;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,21 +17,45 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eladapp.elachat.R;
 
-public class LicenseagreementActivity extends AppCompatActivity{
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+public class DappActivity extends AppCompatActivity{
     private WebView webView;
     private ProgressBar progressBar;
+    private String jumpurl;
+    private String appname="";
+    private TextView dappurl_site_name;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_license_agreement);
+        setContentView(R.layout.activity_dapp);
         initview();
-        /*
-        webView.loadUrl("https://www.baidu.com");
-       // webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
+        Uri uridata = this.getIntent().getData();
+        /**
+         *  形式上为：elachatapp://identity?jumpurl=&appname=
+         */
+        String authorurl = uridata.toString();
+        String [] urla = authorurl.split("\\?");
+        String [] urlb = urla[1].split("&");
+        //获取回调地址
+        String [] callbackurlarr = urlb[0].split("=");
+        jumpurl = URLDecoder.decode(callbackurlarr[1].toString());
+        //获取DID信息
+        String [] didarr = urlb[1].split("=");
+        //URLEncoder.encode(author_app_did,"utf-8")
+        try {
+            appname = URLDecoder.decode(didarr[1].toString(),"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        dappurl_site_name.setText(appname);
+        webView.loadUrl(jumpurl);
         webView.setWebChromeClient(webChromeClient);
         webView.setWebViewClient(webViewClient);
         WebSettings webSettings=webView.getSettings();
@@ -37,11 +64,11 @@ public class LicenseagreementActivity extends AppCompatActivity{
         //支持屏幕缩放
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
-        */
     }
     public void initview(){
         progressBar= (ProgressBar)findViewById(R.id.progressbar);
         webView = (WebView) findViewById(R.id.webview);
+        dappurl_site_name = (TextView)findViewById(R.id.dappurl_site_name);
     }
     //WebViewClient主要帮助WebView处理各种通知、请求事件
     private WebViewClient webViewClient=new WebViewClient(){
@@ -57,8 +84,20 @@ public class LicenseagreementActivity extends AppCompatActivity{
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if(url.equals("http://www.google.com/")){
-                Toast.makeText(LicenseagreementActivity.this,"国内不能访问google,拦截该url",Toast.LENGTH_LONG).show();
+                Toast.makeText(DappActivity.this,"国内不能访问google,拦截该url",Toast.LENGTH_LONG).show();
                 return true;//表示我已经处理过了
+            }
+            if(url.startsWith("https") || url.startsWith("http")){
+                view.loadUrl(url);
+                return true;
+            }else{
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                    return true;
+                } catch (ActivityNotFoundException e) {
+                    // TODO: handle exception
+                }
             }
             return super.shouldOverrideUrlLoading(view, url);
         }
@@ -86,7 +125,6 @@ public class LicenseagreementActivity extends AppCompatActivity{
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            Log.i("ansen","网页标题:"+title);
         }
 
         //加载进度回调

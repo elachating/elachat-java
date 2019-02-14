@@ -2,6 +2,8 @@ package com.eladapp.elachat.mysetting;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -41,7 +43,13 @@ public class AssetoutputmnemonicActivity extends AppCompatActivity {
                 myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 myClip = ClipData.newPlainText("text", outputmnemonic.getText().toString());
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(AssetoutputmnemonicActivity.this,"助记词已复制.", Toast.LENGTH_SHORT).show();
+                if(getlangconfig().equals("cn")){
+                    Toast.makeText(AssetoutputmnemonicActivity.this,"助记词已复制.", Toast.LENGTH_SHORT).show();
+                }else if(getlangconfig().equals("en")){
+                    Toast.makeText(AssetoutputmnemonicActivity.this,"Mnemonic words have been copyed.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AssetoutputmnemonicActivity.this,"助记词已复制.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         outputmnemonicbtn.setOnClickListener(new View.OnClickListener() {
@@ -77,12 +85,32 @@ public class AssetoutputmnemonicActivity extends AppCompatActivity {
     }
     public void checkkeystorein(String curpaypwd){
         if(curpaypwd.equals("")){
-            Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(getApplicationContext(),"Current wallet payment password cannot be empty.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"当前钱包支付密码不能为空.",Toast.LENGTH_SHORT).show();
+            }
             checkpwd = false;
             return;
         }
     }
     public void back(View view){
         finish();
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

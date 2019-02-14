@@ -122,6 +122,18 @@
         <activity android:name="com.eladapp.elachat.mysetting.AssetoutputmnemonicActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity android:name="com.eladapp.elachat.dapps.DappActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="elachatapp"
+                    android:host="dapps">
+                </data>
+            </intent-filter>
+        </activity>
         <activity android:name="com.eladapp.elachat.chat.ChatmenurActivity"  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 

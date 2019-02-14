@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -74,17 +76,30 @@ public class FriendlistActivity extends AppCompatActivity {
                     FriendInfo fuinfo = mycarrier.getFriend(uid);
                     fnickname = fuinfo.getName();
                     if(fnickname.equals("")){
-                        fnickname="在线";
+                        if(getlangconfig().equals("cn")){
+                            fnickname="在线";
+                        }else if(getlangconfig().equals("en")){
+                            fnickname="Online";
+                        }else{
+                            fnickname="在线";
+                        }
+
                     }
                 }catch (CarrierException e){
                     e.getCode();
                 }
             }else if(status.equals("0")){
-                fnickname = "离线";
+                if(getlangconfig().equals("cn")){
+                    fnickname = "离线";
+                }else if(getlangconfig().equals("en")){
+                    fnickname = "Offline";
+                }else{
+                    fnickname = "离线";
+                }
+
             }
             mpa.put("userid",uid);
             mpa.put("remark",fnickname);
-            System.out.println("状态：1"+mpa.toString());
             list.set(j,mpa);
             contactListAdapter.notifyDataSetChanged();
         }
@@ -136,8 +151,21 @@ public class FriendlistActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String friendid = intent.getExtras().getString("friendid");
             String status = intent.getExtras().getString("status");
-            System.out.println("状态："+status);
             setitemval(friendid,status);
         }
     };
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
+    }
 }

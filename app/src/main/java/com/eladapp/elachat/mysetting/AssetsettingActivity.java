@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.eladapp.elachat.R;
+
 public class AssetsettingActivity extends AppCompatActivity{
     private RelativeLayout editpaypwd_show;
     private RelativeLayout export_phrase_show;
@@ -44,4 +43,5 @@ public class AssetsettingActivity extends AppCompatActivity{
     public void back(View view){
         finish();
     }
+
 }

@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="资产"
+            android:text="@string/mainassets"
             android:textColor="#FEFEFE"
             android:textSize="16sp" />
         <ImageView

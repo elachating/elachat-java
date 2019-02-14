@@ -1,5 +1,7 @@
 package com.eladapp.elachat.walletspv;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -51,16 +53,9 @@ public class WalletcreatetowstepActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean rs = checkpwd( paypwd.getText().toString(), cpaypwd.getText().toString());
-                System.out.println("支付密码："+paypwd.getText().toString());
-                System.out.println("确认支付密码："+cpaypwd.getText().toString());
-                System.out.println(rs);
                 if(rs){
-                    System.out.println("是否：");
-                   // Elaspvapi elaspvapi = new Elaspvapi();
                     ISubWallet subwallets =   createmasterwallet(rootpath,"ELA",phrasewords,cpaypwd.getText().toString(),cpaypwd.getText().toString(),"ELA");
-                   System.out.println("钱包名称："+subwallets.GetChainId());
-                    System.out.println("钱包地址："+subwallets.GetAllAddress(0,100));
-                    System.out.println("钱包余额信息："+subwallets.GetBalanceInfo());
+
 
                     startActivity(new Intent(WalletcreatetowstepActivity.this, ElachatActivity.class).putExtra("id","2"));
                 }
@@ -71,11 +66,23 @@ public class WalletcreatetowstepActivity extends AppCompatActivity {
     public boolean checkpwd(String paypwd,String cpaypwd){
         boolean paypwdrs = true;
         if(!isLetterDigit(paypwd)){
-            Toast.makeText(WalletcreatetowstepActivity.this,"密码必须包含字母和数字且长度8位到20位.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                 Toast.makeText(WalletcreatetowstepActivity.this,"密码必须包含字母和数字且长度8位到20位.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(WalletcreatetowstepActivity.this,"Passwords must contain letters and numbers and be 8 to 20 bits long.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(WalletcreatetowstepActivity.this,"密码必须包含字母和数字且长度8位到20位.",Toast.LENGTH_SHORT).show();
+            }
             paypwdrs = false;
         }
         if(!paypwd.equals(cpaypwd)){
-            Toast.makeText(WalletcreatetowstepActivity.this,"支付密码与确认密码不一致.",Toast.LENGTH_SHORT).show();
+            if(getlangconfig().equals("cn")){
+                 Toast.makeText(WalletcreatetowstepActivity.this,"支付密码与确认密码不一致.",Toast.LENGTH_SHORT).show();
+            }else if(getlangconfig().equals("en")){
+                Toast.makeText(WalletcreatetowstepActivity.this,"Payment password is inconsistent with confirmation password.",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(WalletcreatetowstepActivity.this,"支付密码与确认密码不一致.",Toast.LENGTH_SHORT).show();
+            }
             paypwdrs = false;
         }
         return paypwdrs;
@@ -102,5 +109,19 @@ public class WalletcreatetowstepActivity extends AppCompatActivity {
         subWallet = masterWallet.CreateSubWallet(chainid,feePerKb);
         cloudchatapp.initwallet(rootpath);
         return subWallet;
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
 }

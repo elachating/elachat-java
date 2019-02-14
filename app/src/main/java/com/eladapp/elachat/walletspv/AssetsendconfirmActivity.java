@@ -49,7 +49,6 @@ public class AssetsendconfirmActivity extends Activity implements View.OnClickLi
         toaddress = this.getIntent().getStringExtra("toaddress");
         amount = this.getIntent().getStringExtra("amount");
         momo = this.getIntent().getStringExtra("mono");
-        System.out.println("收币地址："+toaddress);
         rootpath = getApplicationContext().getFilesDir().getParent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_pop);
@@ -64,11 +63,9 @@ public class AssetsendconfirmActivity extends Activity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        System.out.println("点击："+v.getId());
         switch (v.getId()) {
             case R.id.sendassetbtn:
                 //发送交易
-                System.out.println("发送交易：");
                 double num;
                 java.text.DecimalFormat myformat=new java.text.DecimalFormat("#0.00000000");
                 num=Double.parseDouble(amount);
@@ -79,7 +76,6 @@ public class AssetsendconfirmActivity extends Activity implements View.OnClickLi
                 System.out.print(d3.toBigInteger().longValue());
                 long amounts =  d3.toBigInteger().longValue();
                 String txid = transaction("ELA", paypassword.getText().toString(), toaddress, amounts, momo);
-                System.out.println("交易ID："+txid);
                 cloudchatapp.initwallet(rootpath);
                 Intent intent = new Intent();
                 intent.setClass(AssetsendconfirmActivity.this, ElachatActivity.class);

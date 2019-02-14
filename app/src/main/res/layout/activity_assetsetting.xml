@@ -26,7 +26,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="资产设置"
+            android:text="@string/assetsetting"
             android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -46,7 +46,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:text="修改支付密码"
+            android:text="@string/assetsetting_update_pay_password"
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
@@ -73,7 +73,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:text="导出助记词"
+            android:text="@string/assetsetting_export_mnemonic"
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
@@ -100,7 +100,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:text="导出私钥"
+            android:text="@string/assetsetting_export_private_key"
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
@@ -120,6 +120,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="220dp"
+        android:visibility="gone"
         android:background="@drawable/setting_bottom_border">
         <TextView
             android:layout_width="wrap_content"

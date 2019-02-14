@@ -28,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="46dp"
-            android:text="加好友"
+            android:text="@string/addfriend"
             android:textColor="#fff"
             android:textSize="16sp" />
 
@@ -49,7 +49,6 @@
         android:layout_marginTop="65dp"
         android:layout_alignParentTop="true"
         android:background="#fff">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp">
@@ -62,7 +61,7 @@
                 android:gravity="bottom"
                 android:textColor="#333"
                 android:textSize="12sp"
-                android:hint = "用户地址"
+                android:hint = "@string/addfriend_user_address"
                 android:textColorHint="#333"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -83,7 +82,7 @@
                 android:textColor="#222"
                 android:layout_centerVertical="true"
                 android:gravity="bottom"
-                android:hint = "备注信息"
+                android:hint = "@string/addfriend_bak_info"
                 android:textColorHint="#333"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -101,9 +100,8 @@
             android:background="#0070C9"
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
-            android:text="添加好友"
+            android:text="@string/addfriend_add_button"
             android:textColor="#ffffff"
             android:textSize="18sp" />
     </RelativeLayout>
-
 </RelativeLayout>

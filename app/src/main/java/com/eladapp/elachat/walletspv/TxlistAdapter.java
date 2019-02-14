@@ -1,19 +1,17 @@
 package com.eladapp.elachat.walletspv;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eladapp.elachat.R;
-import com.eladapp.elachat.chat.NewFriendsListAdapter;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -46,42 +44,68 @@ public class TxlistAdapter extends BaseAdapter {
             vh.txamount = (TextView)view.findViewById(R.id.txamount);
             vh.txtime = (TextView)view.findViewById(R.id.txtime);
             view.setTag(vh);
-            /*
-            *
-            *
-            *   jsonObjectc.put("txhash", txhash);
-                jsonObjectc.put("confirmstatus", confirmstatus);
-                jsonObjectc.put("amount", Double.valueOf(amount) / 100000000);
-                jsonObjectc.put("txtime", txtime);
-                jsonObjectc.put("direction", direction);
-                jsonObjectc.put("noid", j);
-            *
-            * */
             if(String.valueOf(datas.get(i).get("direction")).equals("Sent")){
-
                 if(String.valueOf(datas.get(i).get("confirmstatus")).equals("Pending")){
                     vh.txidimg.setImageResource(R.drawable.up_gray);
-                    vh.txidconfirmstatus.setText("确认中");
+                    if(getlangconfig().equals("cn")) {
+                        vh.txidconfirmstatus.setText("确认中");
+                    }else if(getlangconfig().equals("en")){
+                        vh.txidconfirmstatus.setText("Confirming");
+                    }else{
+                        vh.txidconfirmstatus.setText("确认中");
+                    }
                 }else if(String.valueOf(datas.get(i).get("confirmstatus")).equals("Confirmed")){
                     vh.txidimg.setImageResource(R.drawable.up_green);
-                    vh.txidconfirmstatus.setText("已确认");
+                    if(getlangconfig().equals("cn")) {
+                        vh.txidconfirmstatus.setText("已确认");
+                    }else if(getlangconfig().equals("en")){
+                        vh.txidconfirmstatus.setText("Confirmed");
+                    }else{
+                        vh.txidconfirmstatus.setText("已确认");
+                    }
                 }
                 vh.txamount.setText("-"+String.valueOf(datas.get(i).get("amount"))+"ELA");
             }else if(String.valueOf(datas.get(i).get("direction")).equals("Received")){
                 if(String.valueOf(datas.get(i).get("confirmstatus")).equals("Pending")){
                     vh.txidimg.setImageResource(R.drawable.down_gray);
-                    vh.txidconfirmstatus.setText("确认中");
+                    if(getlangconfig().equals("cn")) {
+                        vh.txidconfirmstatus.setText("确认中");
+                    }else if(getlangconfig().equals("en")){
+                        vh.txidconfirmstatus.setText("Confirming");
+                    }else{
+                        vh.txidconfirmstatus.setText("确认中");
+                    }
                 }else if(String.valueOf(datas.get(i).get("confirmstatus")).equals("Confirmed")){
                     vh.txidimg.setImageResource(R.drawable.down_green);
-                    vh.txidconfirmstatus.setText("已确认");
+                    if(getlangconfig().equals("cn")) {
+                        vh.txidconfirmstatus.setText("已确认");
+                    }else if(getlangconfig().equals("en")){
+                        vh.txidconfirmstatus.setText("Confirmed");
+                    }else{
+                        vh.txidconfirmstatus.setText("已确认");
+                    }
                 }
                 vh.txamount.setText("+"+String.valueOf(datas.get(i).get("amount"))+"ELA");
             }
-            SimpleDateFormat time=new SimpleDateFormat("HH:mm:ss YYYY-MM-dd");
+            SimpleDateFormat time=new SimpleDateFormat("HH:mm:ss yyyy-MM-dd");
             //System.out.println(time.format(System.currentTimeMillis()));
             vh.txtime.setText(String.valueOf(time.format(new Date(Long.valueOf(String.valueOf(datas.get(i).get("txtime")+"000"))))));
         }
         return view;
+    }
+    public String getlangconfig(){
+        String lang = "";
+        Resources resources = context.getResources();
+        Configuration config = resources.getConfiguration();
+        String langs = String.valueOf(config.locale);
+        if(langs.equals("cn")){
+            lang = "cn";
+        }else if(langs.equals("en")){
+            lang = "en";
+        }else{
+            lang = "cn";
+        }
+        return lang;
     }
     public Map getItem(int position) {
         return datas.get(position);
