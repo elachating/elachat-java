@@ -1,5 +1,6 @@
 package com.eladapp.elachat.did;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -15,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eladapp.elachat.R;
+import com.eladapp.elachat.chat.MyInfoActivity;
 import com.eladapp.elachat.db.Db;
 import com.eladapp.elachat.utils.StreamTools;
+import com.eladapp.elachat.walletspv.WalletcreateonestepActivity;
 
 import net.sf.json.JSONObject;
 
@@ -104,11 +107,11 @@ public class DidAuthorActivity extends AppCompatActivity{
         state = statearr[1].toString();
 
         if(getlangconfig().equals("cn")){
-            author_mid_tip.setText("该网页由"+author_mid_tip+"开发，向其提供以下权限");
+            author_mid_tip.setText("该网页由"+appname+"开发，向其提供以下权限");
         }else if(getlangconfig().equals("en")){
-            author_mid_tip.setText("The website is developed by "+author_mid_tip+",Provide it with the following permissions.");
+            author_mid_tip.setText("The website is developed by "+appname+",Provide it with the following permissions.");
         }else{
-            author_mid_tip.setText("该网页由"+author_mid_tip+"开发，向其提供以下权限");
+            author_mid_tip.setText("该网页由"+appname+"开发，向其提供以下权限");
         }
         System.out.println("参数内容："+uridata.toString());
         JSONArray didinfo = db.getdidinfo();
@@ -118,7 +121,6 @@ public class DidAuthorActivity extends AppCompatActivity{
             try {
                 JSONObject jsonobjects = JSONObject.fromObject(didinfo.get(0).toString());
                 System.out.println("字符串："+didinfo.get(0).toString());
-
                 didname.setText(jsonobjects.get("did").toString());
                 Chatcarrier chatcarrier = new Chatcarrier();
                 UserInfo myinfo = chatcarrier.getmyinfo();
@@ -135,24 +137,66 @@ public class DidAuthorActivity extends AppCompatActivity{
                 e.getMessage();
             }
         }
-        /*
-        if(didname.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+
+        if(getlangconfig().equals("cn")){
+            if(walletadr.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent().setClass(this, WalletcreateonestepActivity.class));
+            }else{
+                if (nickname.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent().setClass(this, MyInfoActivity.class));
+                }else{
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent().setClass(this, DidmanageActivity.class));
+                    }else{
+
+                    }
+                }
+            }
+        }else if(getlangconfig().equals("en")){
+            if(walletadr.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "You haven't created an asset yet. Go to the assets to create an asset.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent().setClass(this, WalletcreateonestepActivity.class));
+            }else{
+                if (nickname.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please set up your nickname on your friends list.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent().setClass(this, MyInfoActivity.class));
+                }else{
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Please go to my DID management settings to create DID.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent().setClass(this, DidmanageActivity.class));
+                    }else{
+
+                    }
+                }
+            }
+        }else{
+            if(walletadr.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent().setClass(this, WalletcreateonestepActivity.class));
+            }else{
+                if (nickname.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent().setClass(this, MyInfoActivity.class));
+                }else{
+                    if(didname.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent().setClass(this, DidmanageActivity.class));
+                    }else{
+
+                    }
+                }
+            }
         }
-        if(nickname.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(), "请到好友列表设置自己的昵称!", Toast.LENGTH_SHORT).show();
-        }
-        if(walletadr.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
-        }*/
         authorbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //构建POST，推送消息到指定网站
                 String author_app_didpubkey = author_didpubkey.getText().toString();
-
                 if(getlangconfig().equals("cn")){
-                    if(didname.getText().toString().equals("")){
+                    /*if(didname.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -163,7 +207,7 @@ public class DidAuthorActivity extends AppCompatActivity{
                     if(walletadr.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
                     //首先检测必填参数是否为空
                     if(callbackurl.equals("")){
                         Toast.makeText(getApplicationContext(), "回调地址为空,不能授权!", Toast.LENGTH_SHORT).show();
@@ -195,7 +239,7 @@ public class DidAuthorActivity extends AppCompatActivity{
                     }
 
                 }else if(getlangconfig().equals("en")){
-                    if(didname.getText().toString().equals("")){
+                    /*if(didname.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "Please go to my DID management settings to create DID.", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -206,7 +250,7 @@ public class DidAuthorActivity extends AppCompatActivity{
                     if(walletadr.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "You haven't created an asset yet. Go to the assets to create an asset.", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
                     //首先检测必填参数是否为空
                     if(callbackurl.equals("")){
                         Toast.makeText(getApplicationContext(), "Callback address is empty and cannot be authorized", Toast.LENGTH_SHORT).show();
@@ -237,7 +281,7 @@ public class DidAuthorActivity extends AppCompatActivity{
                         return;
                     }
                 }else{
-                    if(didname.getText().toString().equals("")){
+                   /* if(didname.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "请到我的DID管理设置创建DID!", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -248,7 +292,7 @@ public class DidAuthorActivity extends AppCompatActivity{
                     if(walletadr.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext(), "您还没创建资产，请到资产界面创建资产!", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
                     //首先检测必填参数是否为空
                     if(callbackurl.equals("")){
                         Toast.makeText(getApplicationContext(), "回调地址为空,不能授权!", Toast.LENGTH_SHORT).show();
@@ -281,7 +325,6 @@ public class DidAuthorActivity extends AppCompatActivity{
                 }
                 //然后验证签名
                 String url = "http://203.189.235.252:8080/trucks/verifydid.jsp?didpubkey="+pubkey+"&sig="+sign+"&msg="+didid;
-
                 URL urls = null;
                 try {
                     urls = new URL(url);
@@ -506,7 +549,6 @@ public class DidAuthorActivity extends AppCompatActivity{
                         InputStream in = conn.getInputStream();
                         // 把inputstream转换成字符串
                         String content = StreamTools.readString(in);
-
                         System.out.println("推送成功！");
                         Message msg = Message.obtain();
                         Bundle bundle = new Bundle();

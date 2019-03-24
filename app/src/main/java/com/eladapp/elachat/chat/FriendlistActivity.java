@@ -55,6 +55,7 @@ public class FriendlistActivity extends AppCompatActivity {
     protected void refresh(){
         db = new Db();
         list = db.isexistfriend();
+
         contactListAdapter = new ContactListAdapter(this, list);
         listView.setAdapter(contactListAdapter);
     }

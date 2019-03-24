@@ -14,15 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.eladapp.elachat.JavaActivity;
 import com.eladapp.elachat.R;
 import com.eladapp.elachat.application.CloudchatApp;
 import com.eladapp.elachat.did.DidmanageActivity;
+import com.eladapp.elachat.http.UpdateAppHttpUtil;
 import com.eladapp.elachat.mysetting.AppsettingActivity;
 import com.eladapp.elachat.mysetting.AssetsettingActivity;
+import com.eladapp.elachat.mysetting.CommonsettingActivity;
 import com.eladapp.elachat.mysetting.LicenseagreementActivity;
 import com.eladapp.elachat.mysetting.MessagesettingActivity;
 import com.eladapp.elachat.walletspv.WalletcreateonestepActivity;
 import com.elastos.spvcore.IMasterWallet;
+import com.vector.update_app.UpdateAppManager;
+import com.vector.update_app.listener.ExceptionHandler;
 
 import org.ela.Carrier.Chatcarrier;
 import org.elastos.carrier.Carrier;
@@ -37,8 +42,12 @@ public class Fragmentprofile extends Fragment {
     private RelativeLayout did_setting;
     private RelativeLayout message_setting;
     private RelativeLayout certificate_setting;
+    private RelativeLayout version_setting;
+    private RelativeLayout commonsetting;
     private CloudchatApp cloudchatapp;
     private ArrayList<IMasterWallet> mainmasterwallet;
+    private String mUpdateUrl = "http://test.eladevp.com/elachatxml/elachat.txt";
+    private boolean isShowDownloadProgress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_my_setting, container,false);
@@ -54,6 +63,12 @@ public class Fragmentprofile extends Fragment {
                 startActivity(new Intent().setClass(getActivity(), AppsettingActivity.class));
             }
         });
+        commonsetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent().setClass(getActivity(), CommonsettingActivity.class));
+            }
+        });
         asset_setting.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -64,7 +79,7 @@ public class Fragmentprofile extends Fragment {
             @Override
             public void onClick(View v) {
                 checkdidpro();
-                startActivity(new Intent().setClass(getActivity(), DidmanageActivity.class));
+
             }
         });
         message_setting.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +94,31 @@ public class Fragmentprofile extends Fragment {
                 startActivity(new Intent().setClass(getActivity(), LicenseagreementActivity.class));
             }
         });
+        version_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateApp(v);
+            }
+        });
+    }
+    public void updateApp(View view) {
+        new UpdateAppManager
+                .Builder()
+                //当前Activity
+                .setActivity(getActivity())
+                //更新地址
+                .setUpdateUrl(mUpdateUrl)
+                .handleException(new ExceptionHandler() {
+                    @Override
+                    public void onException(Exception e) {
+                        e.printStackTrace();
+                    }
+                })
+                //实现httpManager接口的对象
+                .setHttpManager(new UpdateAppHttpUtil())
+                .build()
+                .update();
     }
     public void  initview(){
         appsetting = (RelativeLayout)getView().findViewById(R.id.app_setting);
@@ -86,6 +126,8 @@ public class Fragmentprofile extends Fragment {
         did_setting = (RelativeLayout)getView().findViewById(R.id.did_setting);
         message_setting = (RelativeLayout)getView().findViewById(R.id.message_setting);
         certificate_setting = (RelativeLayout)getView().findViewById(R.id.certificate_setting);
+        version_setting = (RelativeLayout)getView().findViewById(R.id.version_setting);
+        commonsetting = (RelativeLayout)getView().findViewById(R.id.common_setting);
     }
     //判断是否修改了Carrier昵称和创建了资产
     public void checkdidpro(){
@@ -103,20 +145,23 @@ public class Fragmentprofile extends Fragment {
             Intent intent = new Intent();
             intent.setClass(getContext(), MyInfoActivity.class);
             startActivity(intent);
-        }
-        cloudchatapp = new CloudchatApp();
-        mainmasterwallet =  cloudchatapp.getwalletlist();
-        if(mainmasterwallet==null || mainmasterwallet.toString().equals("[]")){
-            if(getlangconfig().equals("cn")){
-                Toast.makeText(getActivity(), "未创建资产，请创建后操作!", Toast.LENGTH_SHORT).show();
-            }else if(getlangconfig().equals("en")){
-                Toast.makeText(getActivity(), "No assets were created, please do after creation.", Toast.LENGTH_SHORT).show();
+        }else {
+            cloudchatapp = new CloudchatApp();
+            mainmasterwallet = cloudchatapp.getwalletlist();
+            if (mainmasterwallet == null || mainmasterwallet.toString().equals("[]")) {
+                if (getlangconfig().equals("cn")) {
+                    Toast.makeText(getActivity(), "未创建资产，请创建后操作!", Toast.LENGTH_SHORT).show();
+                } else if (getlangconfig().equals("en")) {
+                    Toast.makeText(getActivity(), "No assets were created, please do after creation.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "未创建资产，请创建后操作!", Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent();
+                intent.setClass(getContext(), WalletcreateonestepActivity.class);
+                startActivity(intent);
             }else{
-                Toast.makeText(getActivity(), "未创建资产，请创建后操作!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent().setClass(getActivity(), DidmanageActivity.class));
             }
-            Intent intent = new Intent();
-            intent.setClass(getContext(), WalletcreateonestepActivity.class);
-            startActivity(intent);
         }
     }
     public String getlangconfig(){

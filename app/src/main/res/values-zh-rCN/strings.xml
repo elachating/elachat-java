@@ -11,7 +11,9 @@
     <string name="addfriend_bak_info">备注信息</string>
     <string name="addfriend_add_button">添加好友</string>
     <!-- 应用设置页面 -->
-    <string name="appsetting">应用设置</string>
+    <string name="appsetting">应用管理</string>
+    <!-- 普通设置页面 -->
+    <string name="commonsetting">普通设置</string>
     <string name="appsetting_change_lang_tip">选择语言</string>
     <!--  资产详细页面  -->
     <string name="assetdetail">资产</string>
@@ -82,6 +84,7 @@
     <string name="my_did_set">DID管理</string>
     <string name="my_message_set">消息设置</string>
     <string name="my_app_set">应用设置</string>
+    <string name="my_common_set">普通设置</string>
     <string name="my_author_set">许可协议</string>
     <string name="my_support">支持我们</string>
     <string name="my_help_center">帮助中心</string>

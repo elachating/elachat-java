@@ -21,15 +21,14 @@
                 android:textSize="16sp" />
     </LinearLayout>
 
-
     <RelativeLayout
         android:id="@+id/asset_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -49,8 +48,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -58,15 +57,14 @@
             android:src="@drawable/right_arrow_gray" />
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/did_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -86,8 +84,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -95,15 +93,14 @@
             android:src="@drawable/right_arrow_gray" />
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/message_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="160dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -123,8 +120,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -134,11 +131,11 @@
     <RelativeLayout
         android:id="@+id/app_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="210dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -158,8 +155,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -167,15 +164,49 @@
             android:src="@drawable/right_arrow_gray" />
     </RelativeLayout>
 
-
+    <RelativeLayout
+        android:id="@+id/common_setting"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/asset_detail_four_border">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/common_setting" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="@string/my_common_set"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/right_arrow_gray" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/certificate_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="310dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
@@ -196,8 +227,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -205,15 +236,14 @@
             android:src="@drawable/right_arrow_gray" />
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/support_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="360dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -233,8 +263,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -242,15 +272,14 @@
             android:src="@drawable/right_arrow_gray" />
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/help_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="410dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -270,8 +299,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -282,11 +311,11 @@
     <RelativeLayout
         android:id="@+id/version_setting"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="40sp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="460dp"
         android:background="@drawable/asset_detail_four_border">
         <ImageView
             android:layout_width="25dp"
@@ -306,8 +335,8 @@
             android:textColor="#333333"
             android:textSize="16sp" />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"

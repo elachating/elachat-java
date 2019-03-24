@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:height="120dp"
         android:orientation="horizontal">
-
     <RelativeLayout
         android:id="@+id/userrequest"
         android:layout_width="wrap_content"
@@ -63,8 +62,6 @@
                     android:textSize="15sp" />
             </LinearLayout>
         </RelativeLayout>
-
-
         <RelativeLayout
             android:id="@+id/userInfo"
             android:layout_width="wrap_content"

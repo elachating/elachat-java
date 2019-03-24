@@ -89,6 +89,9 @@
         <activity android:name="com.eladapp.elachat.mysetting.AppsettingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.CommonsettingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <activity android:name="com.eladapp.elachat.mysetting.AssetsettingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
@@ -102,6 +105,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity android:name="com.eladapp.elachat.mysetting.LicenseagreementActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.JavaActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity android:name="com.eladapp.elachat.did.DidAuthorActivity"
@@ -133,6 +139,33 @@
                     android:host="dapps">
                 </data>
             </intent-filter>
+        </activity>
+        <activity android:name="com.eladapp.elachat.walletspv.AuthorpayActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="elachatapp"
+                    android:host="walletpay">
+                </data>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.eladapp.elachat.dapps.DappmainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.AdddappinfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.DappcateinfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.DappmenusetActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name="com.eladapp.elachat.mysetting.DappdidinfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity android:name="com.eladapp.elachat.chat.ChatmenurActivity"  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>

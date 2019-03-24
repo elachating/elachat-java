@@ -36,10 +36,7 @@ public class DappActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dapp);
         initview();
-        Uri uridata = this.getIntent().getData();
-        /**
-         *  形式上为：elachatapp://identity?jumpurl=&appname=
-         */
+        /*Uri uridata = this.getIntent().getData();
         String authorurl = uridata.toString();
         String [] urla = authorurl.split("\\?");
         String [] urlb = urla[1].split("&");
@@ -53,7 +50,9 @@ public class DappActivity extends AppCompatActivity{
             appname = URLDecoder.decode(didarr[1].toString(),"utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
+        }*/
+        String appname = this.getIntent().getStringExtra("dappname");
+        String jumpurl = this.getIntent().getStringExtra("jumpurl");
         dappurl_site_name.setText(appname);
         webView.loadUrl(jumpurl);
         webView.setWebChromeClient(webChromeClient);

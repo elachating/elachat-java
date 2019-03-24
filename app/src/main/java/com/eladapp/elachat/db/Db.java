@@ -63,11 +63,23 @@ public class Db {
                 + "useradr text,"
                 + "nickname text,"
                 + "walletadr text)";
+        String sqlf ="create table if not exists dappinfo("
+                + "id integer primary key autoincrement,"
+                + "appid text,"
+                + "appname text,"
+                + "did text,"
+                + "cate char(5),"
+                + "pubkey text,"
+                + "appshortname text,"
+                + "remark text,"
+                + "images text,"
+                + "menujson text)";
         db.execSQL(sqla);
         db.execSQL(sqlb);
         db.execSQL(sqlc);
         db.execSQL(sqld);
         db.execSQL(sqle);
+        db.execSQL(sqlf);
         db.close();
     }
     /**
@@ -415,5 +427,168 @@ public class Db {
         }
         dba.close();
         return listo;
+    }
+    /**
+     *
+     * 新增信息到DAPP信息表
+     * */
+    public boolean adddappinfo(String appid,String did,String appname,String cate,String pubkey,String appshortname,String remark,String images,String menujson){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        ContentValues values = new ContentValues();
+        values.put("appid", appid);
+        values.put("did", did);
+        values.put("appname", appname);
+        values.put("cate", cate);
+        values.put("pubkey",pubkey);
+        values.put("appshortname", appshortname);
+        values.put("remark", remark);
+        values.put("images", images);
+        values.put("menujson", menujson);
+        long rs = dba.insert("dappinfo", null, values);
+        dba.close();
+        if (rs!=-1) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+     *
+     * 更新信息到DAPP信息表
+     * */
+    public boolean updatedappinfo(String appid,String appname,String cate,String appshortname,String remark,String images,String menujson){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        ContentValues values = new ContentValues();
+        values.put("appname", appname);
+        values.put("cate", cate);
+        values.put("appshortname", appshortname);
+        values.put("remark", remark);
+        values.put("images", images);
+        values.put("menujson", menujson);
+        long rs = dba.update("dappinfo", values, "appid=?", new String[] {appid});
+        dba.close();
+        if (rs!=-1) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     *
+     * 更新信息DID信息到DAPP信息表
+     * */
+    public boolean updatedappdidinfo(String appid,String did,String didpubkey){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        ContentValues values = new ContentValues();
+        values.put("did", did);
+        values.put("pubkey",didpubkey);
+        long rs = dba.update("dappinfo", values, "appid=?", new String[] {appid});
+        dba.close();
+        if (rs!=-1) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+     *
+     * 更新信息到DAPP信息表
+     * */
+    public boolean updatedappmenuinfo(String appid,String menujson){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        ContentValues values = new ContentValues();
+        values.put("menujson", menujson);
+        long rs = dba.update("dappinfo", values, "appid=?", new String[] {appid});
+        dba.close();
+        if (rs!=-1) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     *
+     * 获取DAPP信息表
+     * */
+    public Map<String, String> dappinfo(String appid){
+        Map<String, String> maps = new HashMap<String, String>();
+       SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        Cursor result = dba.query ("dappinfo",new String[]{"appid,did,appname,appshortname,cate,pubkey,remark,images,menujson"},"appid=? ",new String[]{appid},null,null,null);
+        if(result.moveToFirst()){
+            while(!result.isAfterLast()){
+                String did = result.getString(result.getColumnIndex("did"));
+                String appname = result.getString(result.getColumnIndex("appname"));
+                String appshortname = result.getString(result.getColumnIndex("cate"));
+                String cate = result.getString(result.getColumnIndex("appshortname"));
+                String pubkey = result.getString(result.getColumnIndex("pubkey"));
+                String remark = result.getString(result.getColumnIndex("remark"));
+                String images = result.getString(result.getColumnIndex("images"));
+                String menujson = result.getString(result.getColumnIndex("menujson"));
+                maps.put("did",did);
+                maps.put("appname",appname);
+                maps.put("cate",cate);
+                maps.put("appshortname",appshortname);
+                maps.put("pubkey",pubkey);
+                maps.put("remark",remark);
+                maps.put("images",images);
+                maps.put("menujson",menujson);
+                result.moveToNext();
+            }
+        }
+        dba.close();
+        return maps;
+    }
+    /**
+     *
+     * 获取DAPP信息表
+     * */
+    public List<Map<String, String>> dappinfolist(){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        Cursor result = dba.query ("dappinfo",new String[]{"appid,did,appname,appshortname,cate,pubkey,remark,images,menujson"},null,null,null,null,null);
+        if(result.moveToFirst()){
+            while(!result.isAfterLast()){
+                String appid = result.getString(result.getColumnIndex("appid"));
+                String did = result.getString(result.getColumnIndex("did"));
+                String appname = result.getString(result.getColumnIndex("appname"));
+                String appshortname = result.getString(result.getColumnIndex("cate"));
+                String cate = result.getString(result.getColumnIndex("appshortname"));
+                String pubkey = result.getString(result.getColumnIndex("pubkey"));
+                String remark = result.getString(result.getColumnIndex("remark"));
+                String images = result.getString(result.getColumnIndex("images"));
+                String menujson = result.getString(result.getColumnIndex("menujson"));
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("appid", appid);
+                maps.put("did",did);
+                maps.put("appname",appname);
+                maps.put("cate",cate);
+                maps.put("appshortname",appshortname);
+                maps.put("pubkey",pubkey);
+                maps.put("remark",remark);
+                maps.put("images",images);
+                maps.put("menujson",menujson);
+                list.add(maps);
+                result.moveToNext();
+            }
+        }
+        dba.close();
+        return list;
+    }
+    /**
+     *
+     * 删除DAPP信息表
+     *
+     * */
+    public boolean deldappdidinfo(String appid){
+        SQLiteDatabase dba = SQLiteDatabase.openOrCreateDatabase(dbpath,null);
+        ContentValues values = new ContentValues();
+        long rs = dba.delete("dappinfo", "appid=?", new String[] {appid});
+        dba.close();
+        if (rs!=-1) {
+            return false;
+        }else{
+            return true;
+        }
     }
 }

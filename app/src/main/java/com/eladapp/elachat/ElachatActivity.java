@@ -1,5 +1,7 @@
 package com.eladapp.elachat;
 
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -9,9 +11,11 @@ import android.app.FragmentTransaction;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.eladapp.elachat.chat.Fragmentapp;
+import com.eladapp.elachat.chat.Fragmentapps;
 import com.eladapp.elachat.chat.Fragmentmessage;
 import com.eladapp.elachat.chat.Fragmentprofile;
 import com.eladapp.elachat.chat.Fragmentwallet;
+
 
 public class ElachatActivity extends AppCompatActivity {
     private FragmentTransaction mFragmentTransaction;//fragment事务
@@ -22,6 +26,10 @@ public class ElachatActivity extends AppCompatActivity {
     private Fragmentapp fragmentapp;
     private int id;
     private BottomNavigationBar  bottomNavigationBar;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,5 +145,19 @@ public class ElachatActivity extends AppCompatActivity {
                 break;
         }
         mFragmentTransaction.commit();
+    }
+    public void getPermission() {
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(this,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

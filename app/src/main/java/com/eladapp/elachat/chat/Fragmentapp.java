@@ -1,9 +1,19 @@
 package com.eladapp.elachat.chat;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -20,149 +30,189 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.eladapp.elachat.R;
+import com.eladapp.elachat.dapps.DapplistActivity;
+import com.eladapp.elachat.dapps.DapplistAdapter;
+import com.eladapp.elachat.dapps.DappmainActivity;
 import com.eladapp.elachat.mysetting.LicenseagreementActivity;
+import com.eladapp.elachat.utils.CommonDialog;
+import com.eladapp.elachat.utils.StreamTools;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Fragmentapp extends Fragment {
     private WebView webView;
     private ProgressBar progressBar;
     private View mContentView;
+    private RollPagerView mRollViewPager;
+    private ListView dapplistview_list;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_app, container,false);
+        View view = inflater.inflate(R.layout.activity_dapplist, container,false);
         return view;
-       // return view;
-    }
-    public void initview(){
-        progressBar= (ProgressBar)getView().findViewById(R.id.dappsprogressbar);
-        webView = (WebView)getView().findViewById(R.id.dappswebview);
-    }
-    //WebViewClient主要帮助WebView处理各种通知、请求事件
-    private WebViewClient webViewClient=new WebViewClient(){
-        @Override
-        public void onPageFinished(WebView view, String url) {//页面加载完成
-            progressBar.setVisibility(View.GONE);
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {//页面开始加载
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if(url.equals("http://www.google.com/")){
-               // Toast.makeText(LicenseagreementActivity.this,"国内不能访问google,拦截该url",Toast.LENGTH_LONG).show();
-                return true;//表示我已经处理过了
-            }
-            if(url.startsWith("https") || url.startsWith("http")){
-                view.loadUrl(url);
-                return true;
-            }else{
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                } catch (ActivityNotFoundException e) {
-                    // TODO: handle exception
-                }
-            }
-            return super.shouldOverrideUrlLoading(view, url);
-        }
-
-    };
-    //WebChromeClient主要辅助WebView处理Javascript的对话框、网站图标、网站title、加载进度等
-    private WebChromeClient webChromeClient=new WebChromeClient(){
-        //不支持js的alert弹窗，需要自己监听然后通过dialog弹窗
-        @Override
-        public boolean onJsAlert(WebView webView, String url, String message, JsResult result) {
-            AlertDialog.Builder localBuilder = new AlertDialog.Builder(webView.getContext());
-            localBuilder.setMessage(message).setPositiveButton("确定",null);
-            localBuilder.setCancelable(false);
-            localBuilder.create().show();
-
-            //注意:
-            //必须要这一句代码:result.confirm()表示:
-            //处理结果为确定状态同时唤醒WebCore线程
-            //否则不能继续点击按钮
-            result.confirm();
-            return true;
-        }
-
-        //获取网页标题
-        @Override
-        public void onReceivedTitle(WebView view, String title) {
-            super.onReceivedTitle(view, title);
-            Log.i("ansen","网页标题:"+title);
-        }
-
-        //加载进度回调
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-            progressBar.setProgress(newProgress);
-        }
-    };
-
-
-
-    /**
-     * JS调用android的方法
-     * @param str
-     * @return
-     */
-    @JavascriptInterface //仍然必不可少
-    public void  getClient(String str){
-        Log.i("ansen","html调用客户端:"+str);
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //释放资源
-        webView.destroy();
-        webView=null;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initview();
-        webView.loadUrl("http://test.eladevp.com/showdapp.html");
-        // webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
-        webView.setWebChromeClient(webChromeClient);
-        webView.setWebViewClient(webViewClient);
-        WebSettings webSettings=webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
-        //支持屏幕缩放
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-        webView.setOnKeyListener(new View.OnKeyListener() {
-
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-                    handler.sendEmptyMessage(1);
-                    return true;
+        mRollViewPager.setPlayDelay(2000);
+        mRollViewPager.setAnimationDurtion(1000);
+        mRollViewPager.setAdapter(new TestNormalAdapter());
+        mRollViewPager.setHintView(new ColorPointHintView(getContext(), Color.YELLOW, Color.WHITE));
+        dapplistview_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    Map<String, String> dapplistinfo = ((Map<String, String>) dapplistview_list.getItemAtPosition(position));
+                    //System.out.println("DPPA列表："+dapplistinfo.toString());
+                    //startActivity(new Intent(getActivity(), UserInfoActivity.class).putExtra("friendId", friendInfo.get("userid")).putExtra("curremark",friendInfo.get("remark")));
+                    initDialog(dapplistinfo.get("dappname"),dapplistinfo.get("dappdid"),dapplistinfo.get("menujson"));
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
                 }
-                return false;
             }
-
         });
     }
+    public void initview(){
+        mRollViewPager = (RollPagerView)getView().findViewById(R.id.roll_view_pager);
+        dapplistview_list = (ListView)getView().findViewById(R.id.dapplistview_list);
+        String url = "http://test.eladevp.com/index.php/Home/Dapplist/dapplist";
+        getdapplist(url);
+    }
+    private void initDialog(String appname,String dappdid,String dappmenujson) {
+        final CommonDialog dialog = new CommonDialog(getActivity());
+        dialog.setMessage("该DAPP服务由【"+ appname +"】开发,且需提供以下授权信息：\n 1、昵称. \n 2、资产地址. \n 3、UserAddress.")
+                .setImageResId(R.mipmap.ic_launcher)
+                .setTitle("信息提示")
+                .setNegtive("取消")
+                .setPositive("确定")
+                .setSingle(false)
+                .setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+            @Override
+            public void onPositiveClick() {
+                dialog.dismiss();
+                //Toast.makeText(getActivity(),dappmenujson,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), DappmainActivity.class).putExtra("dappname", appname).putExtra("did",dappdid).putExtra("menujson",dappmenujson));
+            }
+            @Override
+            public void onNegtiveClick() {
+                dialog.dismiss();
+                //Toast.makeText(getActivity(),"跳转",Toast.LENGTH_SHORT).show();
+              }
+        }).show();
+    }
+    //网络获取数据处理成适合LISTVIEW展示的数据
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message message) {
-            switch (message.what) {
-                case 1: {
-                    webViewGoBack();
+        public void handleMessage(android.os.Message msg) {
+            if (msg.obj.equals("getdapplist")) {
+                if(msg.what==1){
+                    Bundle b = msg.getData();
+                    List<Map<String, String>> list = new ArrayList<Map<String,String>>();
+                    String res = b.getString("res");
+                    JSONArray jsonArray= JSONArray.fromObject(res);
+                    for(int i=0;i<jsonArray.size();i++){
+                        Map<String, String> maps = new HashMap<String, String>();
+                        JSONObject jsonObject= JSONObject.fromObject(jsonArray.get(i).toString());
+                        maps.put("dappimg", jsonObject.get("images").toString());
+                        maps.put("dappname", jsonObject.get("appname").toString());
+                        maps.put("dappdesc", jsonObject.get("remark").toString());
+                        maps.put("did", jsonObject.get("did").toString());
+                        maps.put("menujson", jsonObject.get("menujson").toString());
+
+                        list.add(maps);
+                    }
+                    //构建合适的数据展示形式
+                   // List<Map<String, String>> list = new ArrayList<Map<String,String>>();
+                    DapplistAdapter dapplistadapter = new DapplistAdapter(getContext(), list);
+                   dapplistview_list.setAdapter(dapplistadapter);
+                }else{
+
                 }
-                break;
             }
         }
     };
-    private void webViewGoBack() {
-        webView.goBack();
+    //构建POST方法获取指定的DAPP信息列表
+    public void getdapplist(String dappurl){
+        new Thread() {
+            public void run() {
+                try {
+                    URL url = new URL(dappurl);
+                    HttpURLConnection conn = (HttpURLConnection) url
+                            .openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setReadTimeout(5000);
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    String data = "{\"id\":\"1\"}";
+                    conn.setRequestProperty("Content-Length",String.valueOf(data.length()));
+                    conn.setDoOutput(true);
+                    conn.getOutputStream().write(data.getBytes());
+                    int code = conn.getResponseCode();
+                    if (code == 200) {
+                        InputStream in = conn.getInputStream();
+                        String content = StreamTools.readString(in);
+                        Message msg = Message.obtain();
+                        Bundle bundle = new Bundle();
+                        System.out.println("DAPP列表："+content.toString());
+                        bundle.putString("res",content.toString());
+                        msg.setData(bundle);
+                        msg.what = 1;
+                        msg.obj = "getdapplist";
+                        handler.sendMessage(msg);
+                    } else {
+                        Message msg = Message.obtain();
+                        msg.what = 0;
+                        msg.obj = "getdapplist";
+                        handler.sendMessage(msg);
+                    }
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    Message msg = Message.obtain();
+                    msg.what = 0;
+                    msg.obj = "getdapplist";
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
     }
-
+    public class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.drawable.banner1,
+                R.drawable.banner2,
+                R.drawable.banner3,
+        };
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+        @Override
+        public int getCount() {
+            return imgs.length;
+        }
+    }
 }

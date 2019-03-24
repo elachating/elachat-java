@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/child_layout_tow"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/dapp_submnu_r1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/dapp_submnu1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="子菜单1"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dapp_submnu_txt1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text=""/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignLeft="@id/dapp_submnu1"
+            android:layout_alignRight="@id/dapp_submnu1"
+            android:layout_below="@id/dapp_submnu1"
+            android:background="#E4E4E4" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/dapp_submnu_r2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/dapp_submnu2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="子菜单2"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dapp_submnu_txt2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text=""/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignLeft="@id/dapp_submnu2"
+            android:layout_alignRight="@id/dapp_submnu2"
+            android:layout_below="@id/dapp_submnu2"
+            android:background="#E4E4E4" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/dapp_submnu_r3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/dapp_submnu3"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="子菜单3"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dapp_submnu_txt3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text=""/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignLeft="@id/dapp_submnu3"
+            android:layout_alignRight="@id/dapp_submnu3"
+            android:layout_below="@id/dapp_submnu3"
+            android:background="#E4E4E4" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/dapp_submnu_r4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/dapp_submnu4"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="子菜单4"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dapp_submnu_txt4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text=""/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignLeft="@id/dapp_submnu4"
+            android:layout_alignRight="@id/dapp_submnu4"
+            android:layout_below="@id/dapp_submnu4"
+            android:background="#E4E4E4" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/dapp_submnu_r5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/dapp_submnu5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="子菜单5"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dapp_submnu_txt5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text=""/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignLeft="@id/dapp_submnu5"
+            android:layout_alignRight="@id/dapp_submnu5"
+            android:layout_below="@id/dapp_submnu5"
+            android:background="#E4E4E4" />
+    </RelativeLayout>
+</LinearLayout>

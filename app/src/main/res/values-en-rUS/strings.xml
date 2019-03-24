@@ -11,7 +11,9 @@
     <string name="addfriend_bak_info">Remark info</string>
     <string name="addfriend_add_button">Add friend</string>
     <!-- 应用设置页面 -->
-    <string name="appsetting">App Setting</string>
+    <string name="appsetting">App Management</string>
+    <!-- 普通设置页面 -->
+    <string name="commonsetting">Common Setting</string>
     <string name="appsetting_change_lang_tip">change language</string>
     <!--  资产详细页面  -->
     <string name="assetdetail">Assets</string>
@@ -40,7 +42,7 @@
     <string name="authormanage_refuse_button">Refuse</string>
     <string name="authormanage_author_button">Authorization</string>
     <!-- 创建资产助记词页面  -->
-    <string name="createwalletone">Mnemonic</string>
+    <string name="createwalletone">Mnemonic</string>kn
     <string name="createwalletone_info_tip">Please record it on paper in turn. This mnemonic is the only evidence to reply to the current assets. Please keep it properly and prevent others from peeping. Lost, can not be restored, the application does not store any asset information.</string>
     <string name="createwalletone_priv_button">Previous</string>
     <string name="createwalletone_next_button">Next</string>
@@ -82,6 +84,7 @@
     <string name="my_did_set">DID Manage</string>
     <string name="my_message_set">Message Set</string>
     <string name="my_app_set">Application Set</string>
+    <string name="my_common_set">Common Set</string>
     <string name="my_author_set">License Agreement</string>
     <string name="my_support">Support Us</string>
     <string name="my_help_center">Help Center</string>
